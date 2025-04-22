@@ -1,5 +1,42 @@
 # ![](docs/images/icon/mTower-logo-81_128.png) mTower
 
+## Feel free to run BW example by following the next steps:
+
+### Step #0 - Turn on Putty
+Open a terminal and call putty in sudo to open serial port /dev/ttyUS0, baudrate 115200:
+```
+sudo putty 
+```
+
+### Step #1 - Connect UART wires
+Connect:
+- Tx (FTDI)---> Rx (Board) PIN 119
+- Rx (FTDI)---> Tx (Board) PIN 118
+
+### Step #1 - Connect to the boards
+Connect USB to board and look to putty port;
+
+### Step #2 - Compile mTower and BW together
+On other terminal compile the components through the following commands:
+```
+cd <path to mTower> 
+make clean
+make PLATFORM=numaker_pfm_m2351 create_context
+make toolchain
+make
+```
+### Step #3 - FLASH Board NUVOTON
+
+Witth openocd flash the board. It will flash two parts: part 1 BL2 in 0x0 and part 2 BL3 in  0x10040000 at the end we expect to see FreeRTOS running on Putty;
+
+```
+<path to openocd folder>/OpenOCD-Nuvoton/src/openocd -f <path to nulink folder>/OpenOCD-Nuvoton/tcl/interface/nulink.cfg -f <path to config>/OpenOCD-Nuvoton/tcl/target/numicroM23.cfg -c "init; reset halt; numicro M2351_erase; flash write_image <path to mTower>/mTower/mtower_s.bin; flash write_image <path to mTower>/mTower/mtower_ns.bin 0x10040000; exit"
+```
+
+You should see a BW option to be called from CA of FreeRTOS;
+
+
+
 [![Build](https://github.com/samsung/mtower/workflows/Build/badge.svg)](https://github.com/samsung/mtower/actions?query=workflow%3ABuild)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6108/badge)](https://bestpractices.coreinfrastructure.org/projects/6108)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Samsung/mTower/badge)](https://api.securityscorecards.dev/projects/github.com/Samsung/mTower)
