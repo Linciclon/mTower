@@ -135,7 +135,7 @@ static void teeTestSuiteTask( void *pvParameters );
 // extern void SystemCoreClockUpdate( void );
 
 extern int tee_hello_world(void);
-extern int tee_hello_world(void);
+extern int tee_bitcoin_wallet(void);
 extern int tee_aes(void);
 extern int tee_hotp(void);
 extern int tee_tests(void);

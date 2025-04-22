@@ -193,7 +193,7 @@
  */
 #define TEE_ALG_ECDSA_P192                      0x70001041
 #define TEE_ALG_ECDSA_P224                      0x70002041
-#define TEE_ALG_ECDSA_P256                      0x70003041
+#define TEE_ALG_ECDSA_P256                      0x70003042
 #define TEE_ALG_ECDSA_P384                      0x70004041
 #define TEE_ALG_ECDSA_P521                      0x70005041
 #define TEE_ALG_ECDH_P192                       0x80001042
@@ -205,6 +205,15 @@
 #define TEE_ALG_SM3                             0x50000007
 #define TEE_ALG_X25519                          0x80000044
 #define TEE_ALG_ILLEGAL_VALUE                   0xEFFFFFFF
+
+#define TEE_ALG_ECDSA_SHA1			0x70001042
+#define TEE_ALG_ECDH_DERIVE_SHARED_SECRET	0x80000042
+#define TEE_ERROR_BAD_PARAMETERS          0xFFFF0006
+#define TEE_ALG_ECDSA_SHA224			0x70002042
+#define TEE_ALG_ECDSA_SHA256			0x70003042
+//#define TEE_ALG_ECDSA_P256                      0x70003041
+#define TEE_ALG_ECDSA_SHA384			0x70004042
+#define TEE_ALG_ECDSA_SHA512			0x70005042
 
 /* Object Types */
 

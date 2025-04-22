@@ -75,7 +75,7 @@ ifeq ($(CONFIG_BOOTLOADER32),y)
 	$(Q) printf "$(GREEN)| Secure handler  | 0x%08x | 0x%08x | %u\t| bl32.bin      |$(NORMAL)\n" $(bl32_start) $$(( $(bl32_start) + $(bl32_sz) )) $(bl32_sz)
 ifeq ($(CONFIG_BOOTLOADER2),y)
 	$(Q) printf "$(GREEN)| FW info of BL32 | 0x%08x | 0x%08x | %u\t| *auto gen*    |$(NORMAL)\n" 0x00038000 0x000380c0 192
-endif	
+endif
 	
 endif
 	$(eval mtower_s_sz = `stat -c%s $(TOPDIR)/mtower_s.bin`)

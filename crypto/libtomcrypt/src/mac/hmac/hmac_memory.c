@@ -81,7 +81,7 @@ int hmac_memory(int hash,
 
     /* nope, so call the hmac functions */
     /* allocate ram for hmac state */
-    hmac = XMALLOC(sizeof(hmac_state));
+    hmac = CXMALLOC(sizeof(hmac_state)); //JOAO ALTEROU AQUI
     if (hmac == NULL) {
        return CRYPT_MEM;
     }

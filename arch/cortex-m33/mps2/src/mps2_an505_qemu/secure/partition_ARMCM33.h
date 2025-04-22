@@ -125,12 +125,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START2     0x10020000
+#define SAU_INIT_START2     0x10000000
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END2       0x1002FFFF
+#define SAU_INIT_END2       0x1000FFFF
 
 /*
 //     <o>Region is

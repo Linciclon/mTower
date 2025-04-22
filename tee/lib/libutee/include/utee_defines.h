@@ -69,12 +69,68 @@
 	/* Bits [31:28] */
 #define TEE_ALG_GET_CLASS(algo)         (((algo) >> 28) & 0xF)
 
-#define TEE_ALG_GET_KEY_TYPE(algo, with_private_key) \
-        (TEE_ALG_GET_MAIN_ALG(algo) | \
-            ((with_private_key) ? 0xA1000000 : 0xA0000000))
+// #define TEE_ALG_GET_KEY_TYPE(algo, with_private_key) \
+//         (TEE_ALG_GET_MAIN_ALG(algo) | \
+//             ((with_private_key) ? 0xA1000000 : 0xA0000000))
 
-	/* Bits [7:0] */
-#define TEE_ALG_GET_MAIN_ALG(algo)      ((algo) & 0xFF)
+
+#define TEE_ALG_ECDSA_SHA1			0x70001042
+#define TEE_ALG_ECDH_DERIVE_SHARED_SECRET	0x80000042
+#define TEE_ERROR_BAD_PARAMETERS          0xFFFF0006
+#define TEE_ALG_ECDSA_SHA224			0x70002042
+#define TEE_ALG_ECDSA_SHA256			0x70003042
+//#define TEE_ALG_ECDSA_P256                      0x70003041
+#define TEE_ALG_ECDSA_SHA384			0x70004042
+#define TEE_ALG_ECDSA_SHA512			0x70005042
+#define TEE_MAIN_ALGO_ECDSA      0x41
+
+static inline uint32_t __tee_alg_get_main_alg(uint32_t algo)
+{
+	switch (algo) {
+	//case TEE_ALG_SM2_PKE:
+	//	return TEE_MAIN_ALGO_SM2_PKE;
+	//case TEE_ALG_SM2_KEP:
+	//	return TEE_MAIN_ALGO_SM2_KEP;
+	//case TEE_ALG_X25519:
+	//	return TEE_MAIN_ALGO_X25519;
+	//case TEE_ALG_ED25519:
+	//	return TEE_MAIN_ALGO_ED25519;
+	case TEE_ALG_ECDSA_SHA1:
+	case TEE_ALG_ECDSA_SHA224:
+	case TEE_ALG_ECDSA_SHA256:
+	case TEE_ALG_ECDSA_SHA384:
+	case TEE_ALG_ECDSA_SHA512:
+		return TEE_MAIN_ALGO_ECDSA;
+	//case TEE_ALG_HKDF:
+	//	return TEE_MAIN_ALGO_HKDF;
+	//case TEE_ALG_SHAKE128:
+	//	return TEE_MAIN_ALGO_SHAKE128;
+	//case TEE_ALG_SHAKE256:
+	//	return TEE_MAIN_ALGO_SHAKE256;
+	default:
+		break;
+	}
+
+	return algo & 0xff;
+}
+
+#define TEE_ALG_GET_MAIN_ALG(algo) __tee_alg_get_main_alg(algo)
+
+static inline uint32_t __tee_alg_get_key_type(uint32_t algo, uint32_t with_priv)
+{
+    uint32_t key_type = 0xA0000000 |  TEE_ALG_GET_MAIN_ALG(algo);
+
+    if (with_priv)
+        key_type |= 0x01000000;
+
+    return key_type;
+}
+
+#define TEE_ALG_GET_KEY_TYPE(algo, with_private_key) \
+	__tee_alg_get_key_type(algo, with_private_key)
+
+//	/* Bits [7:0] */
+//#define TEE_ALG_GET_MAIN_ALG(algo)      ((algo) & 0xFF)
 
 	/* Bits [11:8] */
 #define TEE_ALG_GET_CHAIN_MODE(algo)    (((algo) >> 8) & 0xF)

@@ -40,6 +40,11 @@ ifeq ($(CONFIG_APPS_AES),y)
 CFLAGS += -I$(TOPDIR)/apps/aes
 endif
 
+ifeq ($(CONFIG_APPS_BW),y)
+CFLAGS += -I $(TOPDIR)/apps/bw/ca/include/
+CFLAGS += -I $(TOPDIR)/apps/bw/
+endif
+
 ifeq ($(CONFIG_APPS_HOTP),y)
 CFLAGS += -I$(TOPDIR)/apps/hotp
 endif
@@ -49,6 +54,8 @@ CFLAGS += -I$(TOPDIR)/apps/test
 endif
 
 CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_NONSECURE_DEBUG_UART))
+
+CFLAGS += -g #joao
 
 OBJDIR = $(TOPDIR)/build/nonsecure$(subst $(TOPDIR),,$(shell pwd))
 
@@ -69,7 +76,8 @@ LIBS =  -lm -lc -lnosys -lm2351_StdDriver_ns -lnsc -lFreeRTOS_ns
 $(AOBJS_NS): $(OBJDIR)/%$(OBJEXT): %.S
 	$(Q) mkdir -p $(OBJDIR)/$(dir $<)
 	@echo "AS: $<"
-	$(Q) $(CC) -c $(AFLAGS) -DHeap_Size=0x00000700 -DStack_Size=0x00000B00 $< -o $@
+	$(Q) $(CC) -c $(AFLAGS) -DHeap_Size=0x00000500 -DStack_Size=0x00000B00 $< -o $@ 
+#here was heap = 0x700
 
 $(COBJS_NS): $(OBJDIR)/%$(OBJEXT): %.c
 	$(Q) mkdir -p $(OBJDIR)/$(dir $<)

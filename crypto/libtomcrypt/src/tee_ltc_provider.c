@@ -19,6 +19,7 @@
 #include <trace.h>
 #include <utee_defines.h>
 #include <util.h>
+//#include <tomcrypt_prng.h>
 
 #if defined(CFG_WITH_VFP)
 #include <tomcrypt_arm_neon.h>
@@ -156,6 +157,85 @@ static TEE_Result tee_ltc_prng_init(struct tee_ltc_prng *prng)
 	return TEE_SUCCESS;
 }
 
+static int prng_crypto_start(prng_state *prng __unused)
+{
+	return CRYPT_OK;
+}
+
+static int prng_crypto_add_entropy(const unsigned char *in __unused,
+				   unsigned long inlen __unused,
+				   prng_state *prng __unused)
+{
+	/* No entropy is required */
+	return CRYPT_OK;
+}
+
+static int prng_crypto_ready(prng_state *prng __unused)
+{
+	return CRYPT_OK;
+}
+
+int crypto_rng_improvised(void *out, size_t outlen) {
+    if (!out || outlen != 32)
+        return -1;
+
+    uint32_t pattern = 0xDEAFBEEF; // padrão a repetir
+    uint8_t *ptr = (uint8_t *)out;
+
+    for (int i = 0; i < 8; i++) {
+        memcpy(ptr + i * 4, &pattern, 4);
+    }
+
+    return 0;
+}
+
+static unsigned long prng_crypto_read(unsigned char *out, unsigned long outlen,
+				      prng_state *prng __unused)
+{
+	if (crypto_rng_improvised(out, outlen))
+		return 0;
+
+	return outlen;
+}
+
+static int prng_crypto_done(prng_state *prng __unused)
+{
+	return CRYPT_OK;
+}
+
+static int prng_crypto_export(unsigned char *out __unused,
+			      unsigned long *outlen __unused,
+			      prng_state *prng __unused)
+{
+	return CRYPT_OK;
+}
+
+static int prng_crypto_import(const unsigned char *in  __unused,
+			      unsigned long inlen __unused,
+			      prng_state *prng __unused)
+{
+	return CRYPT_OK;
+}
+
+static int prng_crypto_test(void)
+{
+	return CRYPT_OK;
+}
+
+
+static const struct ltc_prng_descriptor prng_crypto_desc = {
+	.name = "prng_crypto",
+	.export_size = 64,
+	.start = prng_crypto_start,
+	.add_entropy = prng_crypto_add_entropy,
+	.ready = prng_crypto_ready,
+	.read = prng_crypto_read,
+	.done = prng_crypto_done,
+	.pexport = prng_crypto_export,
+	.pimport = prng_crypto_import,
+	.test = prng_crypto_test,
+};
+
 /*
  * tee_ltc_reg_algs(): Registers
  *	- algorithms
@@ -190,6 +270,8 @@ static void tee_ltc_reg_algs(void)
 #if defined(CFG_CRYPTO_SHA512)
 	register_hash(&sha512_desc);
 #endif
+
+register_prng(&prng_crypto_desc);
 
 //#if defined(CFG_WITH_SOFTWARE_PRNG)
 //#if defined(_CFG_CRYPTO_WITH_FORTUNA_PRNG)
@@ -2990,22 +3072,22 @@ void crypto_aes_gcm_final(void *ctx)
 /******************************************************************************
  * Pseudo Random Number Generator
  ******************************************************************************/
-//TEE_Result crypto_rng_read(void *buf, size_t blen)
-//{
-//	int err;
-//	struct tee_ltc_prng *prng = tee_ltc_get_prng();
-//
-//	err = prng_is_valid(prng->index);
-//
-//	if (err != CRYPT_OK)
-//		return TEE_ERROR_BAD_STATE;
-//
-//	if (prng_descriptor[prng->index]->read(buf, blen, &prng->state) !=
-//			(unsigned long)blen)
-//		return TEE_ERROR_BAD_STATE;
-//
-//	return TEE_SUCCESS;
-//}
+// TEE_Result crypto_rng_read(void *buf, size_t blen)
+// {
+// 	int err;
+// 	struct tee_ltc_prng *prng = tee_ltc_get_prng();
+
+// 	err = prng_is_valid(prng->index);
+
+// 	if (err != CRYPT_OK)
+// 		return TEE_ERROR_BAD_STATE;
+
+// 	if (prng_descriptor[prng->index]->read(buf, blen, &prng->state) !=
+// 			(unsigned long)blen)
+// 		return TEE_ERROR_BAD_STATE;
+
+// 	return TEE_SUCCESS;
+// }
 
 /* Called as a result of rng_generate() below */
 //static TEE_Result _tee_ltc_prng_add_entropy(

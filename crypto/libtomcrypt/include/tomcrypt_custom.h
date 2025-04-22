@@ -31,6 +31,45 @@
 #ifndef TOMCRYPT_CUSTOM_H_
 #define TOMCRYPT_CUSTOM_H_
 
+
+#ifndef LTC_NO_CURVES
+   #define LTC_ECC_BRAINPOOLP160R1
+   #define LTC_ECC_BRAINPOOLP160T1
+   #define LTC_ECC_BRAINPOOLP192R1
+   #define LTC_ECC_BRAINPOOLP192T1
+   #define LTC_ECC_BRAINPOOLP224R1
+   #define LTC_ECC_BRAINPOOLP224T1
+   #define LTC_ECC_BRAINPOOLP256R1
+   #define LTC_ECC_BRAINPOOLP256T1
+   #define LTC_ECC_BRAINPOOLP320R1
+   #define LTC_ECC_BRAINPOOLP320T1
+   #define LTC_ECC_BRAINPOOLP384R1
+   #define LTC_ECC_BRAINPOOLP384T1
+   #define LTC_ECC_BRAINPOOLP512R1
+   #define LTC_ECC_BRAINPOOLP512T1
+   #define LTC_ECC_PRIME192V2
+   #define LTC_ECC_PRIME192V3
+   #define LTC_ECC_PRIME239V1
+   #define LTC_ECC_PRIME239V2
+   #define LTC_ECC_PRIME239V3
+   #define LTC_ECC_SECP112R1
+   #define LTC_ECC_SECP112R2
+   #define LTC_ECC_SECP128R1
+   #define LTC_ECC_SECP128R2
+   #define LTC_ECC_SECP160K1
+   #define LTC_ECC_SECP160R1
+   #define LTC_ECC_SECP160R2
+   #define LTC_ECC_SECP192K1
+   #define LTC_ECC_SECP192R1
+   #define LTC_ECC_SECP224K1
+   #define LTC_ECC_SECP224R1
+   #define LTC_ECC_SECP256K1
+   #define LTC_ECC_SECP256R1
+   #define LTC_ECC_SECP384R1
+   #define LTC_ECC_SECP521R1
+#endif
+
+
 #define LTC_NO_PROTOTYPES
 #define LTC_SOURCE
 #define LTC_NO_TABLES
@@ -38,12 +77,12 @@
 #define LTC_NO_TEST
 
 /* macros for various libc functions you can change for embedded targets */
-#ifndef XMALLOC
+#ifndef CXMALLOC
    #ifdef malloc 
    #define LTC_NO_PROTOTYPES
    #endif
-#define XMALLOC  malloc
-#endif
+#define CXMALLOC  malloc
+#endif //JOAO MUDOU NOME DE XMALLOC PARA CXMALLOC para ver se o malloc que esta defenido agora no freertos esta a fazer asneiras ou não
 #ifndef XREALLOC
    #ifdef realloc 
    #define LTC_NO_PROTOTYPES
@@ -227,6 +266,8 @@
 #ifdef CFG_CRYPTO_DH
    #define LTC_MDH
 #endif
+
+#define CFG_CRYPTO_ECC //joao
 #ifdef CFG_CRYPTO_ECC
    #define LTC_MECC
 
@@ -536,8 +577,6 @@
 /* #define LTC_VALGRIND */
 
 #endif
-
-
 
 /* $Source: /cvs/libtom/libtomcrypt/src/headers/tomcrypt_custom.h,v $ */
 /* $Revision: 1.73 $ */

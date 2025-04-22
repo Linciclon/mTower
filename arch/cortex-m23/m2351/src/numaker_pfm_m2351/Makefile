@@ -70,14 +70,16 @@ ifeq ($(CONFIG_BOOTLOADER2),y)
 	$(Q) printf "$(GREEN)| Boot loader 2   | 0x%08x | 0x%08x | %u\t| bl2.bin       |$(NORMAL)\n" $(bl2_start) $$(( $(bl2_start) + $(bl2_sz) )) $(bl2_sz)
 endif
 
+	$(Q) printf " CONFIG HERE: $(CONFIG_START_ADDRESS_BL32) \n"
+
 ifeq ($(CONFIG_BOOTLOADER32),y)
 	$(eval bl32_sz = `stat -c%s $(TOPDIR)/build/secure$(subst $(TOPDIR),,$(shell pwd))/secure/bl32.bin`)
 	$(eval bl32_start = $(CONFIG_START_ADDRESS_BL32))
 
 	$(Q) printf "$(GREEN)| Secure handler  | 0x%08x | 0x%08x | %u\t| bl32.bin      |$(NORMAL)\n" $(bl32_start) $$(( $(bl32_start) + $(bl32_sz) )) $(bl32_sz)
 ifeq ($(CONFIG_BOOTLOADER2),y)
-	$(Q) printf "$(GREEN)| FW info of BL32 | 0x%08x | 0x%08x | %u\t| *auto gen*    |$(NORMAL)\n" 0x00038000 0x000380c0 192
-endif	
+	$(Q) printf "$(GREEN)| FW info of BL32 | 0x%08x | 0x%08x | %u\t| *auto gen*    |$(NORMAL)\n" 0x0003fb00 0x0003fbc0 192
+endif	#joao change from 0x00038000 to 0x00040000 AND 0x000380c0 to 0x000400c0
 	
 endif
 	$(eval mtower_s_sz = `stat -c%s $(TOPDIR)/mtower_s.bin`)

@@ -358,7 +358,7 @@ void TEE_GetREETime(TEE_Time *time);
 
 /* TEE Arithmetical API - Initialization functions */
 
-//void TEE_BigIntInit(TEE_BigInt *bigInt, uint32_t len);
+void TEE_BigIntInit(TEE_BigInt *bigInt, uint32_t len);
 //
 //void TEE_BigIntInitFMMContext(TEE_BigIntFMMContext *context, uint32_t len,
 //			      const TEE_BigInt *modulus);

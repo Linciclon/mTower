@@ -78,7 +78,7 @@ int hmac_init(hmac_state *hmac, int hash, const unsigned char *key, unsigned lon
     }
 
     /* allocate ram for buf */
-    buf = XMALLOC(LTC_HMAC_BLOCKSIZE);
+    buf = CXMALLOC(LTC_HMAC_BLOCKSIZE); //JOAO ALTEROU AQUI
     if (buf == NULL) {
        return CRYPT_MEM;
     }

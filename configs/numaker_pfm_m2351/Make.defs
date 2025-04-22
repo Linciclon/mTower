@@ -43,7 +43,7 @@ ARCHWARNINGS = -Wall -Wextra -Wstrict-prototypes -Wshadow -Wundef
 ARCHOPTIMIZATION = $(subst ",,$(CONFIG_OPTIMIZATION_LEVEL))
 
 ifeq ($(CONFIG_DEBUG_SYMBOLS),y)
-  ARCHOPTIMIZATION += -g
+  ARCHOPTIMIZATION += -g -ffunction-sections -fdata-sections
 else
   ARCHOPTIMIZATION += -ffunction-sections -fdata-sections
 endif

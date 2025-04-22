@@ -85,6 +85,7 @@ static void teeHelloWorldTask( void *pvParameters );
 static void teeAESTask( void *pvParameters );
 static void teeHotpTask( void *pvParameters );
 static void teeTestSuiteTask( void *pvParameters );
+static void teeBWTask( void *pvParameters );
 
 
 /* Private Data. */
@@ -103,6 +104,7 @@ extern int tee_hello_world(void);
 extern int tee_aes(void);
 extern int tee_hotp(void);
 extern int tee_tests(void);
+extern int tee_bitcoin_wallet(void);
 
 /* NonSecure Callable Functions from Secure Region */
 extern int32_t Secure_func(void);
@@ -214,6 +216,9 @@ static void menuTask(void *pvParameters)
 #ifdef CONFIG_APPS_SPY
     printf("| [8] - Run spy app that trying to get protected data       |\n");
 #endif
+#ifdef CONFIG_APPS_BW
+    printf("| [9] - Run Bitcoin Wallet                                  |\n");
+#endif
     printf("+-----------------------------------------------------------+\n");
 
     printf("\n[%c]\n", ch = GetChar());
@@ -282,6 +287,16 @@ static void menuTask(void *pvParameters)
 #ifdef CONFIG_APPS_SPY
         case '8':
         spyAppTask();
+        break;
+#endif
+#ifdef CONFIG_APPS_BW
+        case '9':
+        xTaskCreate(teeBWTask,  /* The function that implements the task. */
+        "tBitcoinWallet",           /* The text name assigned to the task - for debug only as it is not used by the kernel. */
+        256,                  /* The size of the stack to allocate to the task. */
+        (void *) NULL,        /* The parameter passed to the task - just to check the functionality. */
+        tskIDLE_PRIORITY + 2, /* The priority assigned to the task. */
+        NULL);
         break;
 #endif
       default:
@@ -434,6 +449,30 @@ static void clnSrvTask( void *pvParameters )
     vTaskDelay( xDelay );
   } while (1);
 }
+
+#ifdef CONFIG_APPS_BW
+/**
+ * @brief         teeBWTask - .
+ *
+ * @param         None
+ *
+ * @returns       None
+ */
+static void teeBWTask( void *pvParameters )
+{
+//  const TickType_t xDelay = 2000 / portTICK_PERIOD_MS;
+
+  (void)pvParameters;
+
+  do {
+    portDISABLE_INTERRUPTS();
+    printf("TEE test: Bitcoin Wallet\n");
+    tee_bitcoin_wallet();
+    portENABLE_INTERRUPTS();
+    vTaskDelete(NULL);
+  } while (1);
+}
+#endif
 
 #ifdef CONFIG_APPS_HELLO_WORLD
 /**

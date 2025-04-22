@@ -40,7 +40,8 @@
 
 void tee_obj_add(struct user_ta_ctx *utc, struct tee_obj *o)
 {
-	TAILQ_INSERT_TAIL(&utc->objects, o, link);
+	//TAILQ_INSERT_TAIL(&utc->objects, o, link);
+	TAILQ_INSERT_HEAD(&utc->objects, o, link);
 }
 
 TEE_Result tee_obj_get(struct user_ta_ctx *utc, uint32_t obj_id,
@@ -107,7 +108,7 @@ void tee_obj_free(struct tee_obj *o)
 {
 	if (o) {
 		tee_obj_attr_free(o);
-		TEE_Free(o->attr);
+		//TEE_Free(o->attr);
 		TEE_Free(o);
 	}
 }

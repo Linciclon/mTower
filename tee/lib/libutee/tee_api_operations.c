@@ -41,6 +41,10 @@
 
 #include "config.h"
 
+
+
+#include <crypto/crypto.h>
+
 TEE_Result utee_cipher_update(unsigned long state, const void *src,
     size_t src_len, void *dst, uint64_t *dst_len);
 
@@ -316,7 +320,8 @@ TEE_Result TEE_AllocateOperation(TEE_OperationHandle *operation,
 	e->addr = op;
 
 	/* Enqueue buffer on allocated list */
-	TAILQ_INSERT_TAIL(&oprtn_hndl_head, e, link);
+	//TAILQ_INSERT_TAIL(&oprtn_hndl_head, e, link); //joao comentou para inserir head em vez
+	TAILQ_INSERT_HEAD(&oprtn_hndl_head, e, link);
 
 	op->info.algorithm = algorithm;
 	op->info.operationClass = TEE_ALG_GET_CLASS(algorithm);
@@ -1888,8 +1893,32 @@ void TEE_DeriveKey(TEE_OperationHandle operation,
 void TEE_GenerateRandom(void *randomBuffer, uint32_t randomBufferLen)
 {
 	TEE_Result res;
+	uint8_t *ptr;
+	ptr = randomBuffer;
 
-	res = utee_cryp_random_number_generate(randomBuffer, randomBufferLen);
+	uint32_t r = 0;
+	for (size_t i = 0; i < 32; i++) {
+	  if (i % 4 == 0) {
+		r = random32();
+	  }
+	  *ptr = (r >> ((i % 4) * 8)) & 0xFF;
+	   ptr++;
+	}
+	
+////////////
+
+//third implementation -> mtoweer functions this should be impelemented using RNG of platform;
+//	res = crypto_rng_read(randomBuffer, randomBufferLen);
+//	if (res != TEE_SUCCESS)
+//		return res;
+//
+//	return res;
+/////////////
+
+
+	res == TEE_SUCCESS;
+
+	//joao code should come to here, please replace tis one: res = utee_cryp_random_number_generate(randomBuffer, randomBufferLen);
 	if (res != TEE_SUCCESS)
 		TEE_Panic(res);
 }

@@ -427,8 +427,8 @@ int main(int argc, char** argv)
 
   sign_pFwInfo(&pFwInfo, &ecdsa_key);
 
-  memcpy(buf + 0x00038000, (unsigned char *) &pFwInfo, sizeof(FW_INFO_T));
-  img_size = 0x00038000 + sizeof(FW_INFO_T);
+  memcpy(buf + 0x0003fb00, (unsigned char *) &pFwInfo, sizeof(FW_INFO_T)); //#joao change from 0x00038000 to 0x00040000
+  img_size = 0x0003fb00 + sizeof(FW_INFO_T); //#joao change from 0x00038000 to 0x00040000
 #endif
 
   fd = fopen(argv[3], "wb");

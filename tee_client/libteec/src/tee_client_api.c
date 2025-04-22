@@ -629,7 +629,7 @@ TEEC_Result TEEC_InvokeCommand(TEEC_Session *session, uint32_t cmd_id,
 	res = arg->ret;
 	eorig = arg->ret_origin;
 	teec_post_process_operation(operation, params, shm);
-
+	//o codigo entra aqui no fim da função de sign e morre aqui
 //  bm_timestamp();
 
 out_free_temp_refs:

@@ -33,7 +33,7 @@
 
 #define FMC_INIT_NSBA          1
 
-#define FMC_SECURE_ROM_SIZE      0x40000
+#define FMC_SECURE_ROM_SIZE      0x40000 //joao change from 40000 -> 80000
 #define FMC_NON_SECURE_BASE     (0x10000000 + FMC_SECURE_ROM_SIZE)
 
 /* Peripheral Secure Attribution Configuration */

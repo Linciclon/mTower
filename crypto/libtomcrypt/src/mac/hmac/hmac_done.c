@@ -73,8 +73,8 @@ int hmac_done(hmac_state *hmac, unsigned char *out, unsigned long *outlen)
     hashsize = hash_descriptor[hash]->hashsize;
 
     /* allocate buffers */
-    buf  = XMALLOC(LTC_HMAC_BLOCKSIZE);
-    isha = XMALLOC(hashsize);
+    buf  = CXMALLOC(LTC_HMAC_BLOCKSIZE); //JOAO ALTEROU AQUI
+    isha = CXMALLOC(hashsize); //JOAO ALTEROU AQUI
     if (buf == NULL || isha == NULL) { 
        if (buf != NULL) {
           XFREE(buf);

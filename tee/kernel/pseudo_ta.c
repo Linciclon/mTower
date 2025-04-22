@@ -329,7 +329,8 @@ TEE_Result tee_ta_init_pseudo_ta_session(const TEE_UUID *uuid,
 	stc->pseudo_ta = ta;
 	ctx->uuid = ta->uuid;
 	ctx->ops = &pseudo_ta_ops;
-	TAILQ_INSERT_TAIL(&tee_ctxes, ctx, link);
+	//TAILQ_INSERT_TAIL(&tee_ctxes, ctx, link);
+	TAILQ_INSERT_HEAD(&tee_ctxes, ctx, link);
 
 	DMSG("%s : %pUl", stc->pseudo_ta->name, (void *)&ctx->uuid);
 

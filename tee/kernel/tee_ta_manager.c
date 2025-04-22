@@ -532,7 +532,8 @@ static TEE_Result tee_ta_init_session(TEE_ErrorOrigin *err,
 //
 //
 //	mutex_lock(&tee_ta_mutex);
-	TAILQ_INSERT_TAIL(open_sessions, s, link);
+	//TAILQ_INSERT_TAIL(open_sessions, s, link);
+	TAILQ_INSERT_HEAD(open_sessions, s, link);
 
 	/* Look for already loaded TA */
 //	ctx = tee_ta_context_find(uuid);

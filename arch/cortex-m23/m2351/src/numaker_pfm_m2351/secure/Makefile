@@ -30,8 +30,12 @@ CFLAGS += -I../../Device/Nuvoton/M2351/Include
 CFLAGS += -I$(TOPDIR)/tee_client/public
 CFLAGS += -I$(TOPDIR)/tee_client/libteec/include/freertos
 CFLAGS += -I$(TOPDIR)/tee/lib/libutee/include
+CFLAGS += -I$(TOPDIR)/tee/lib/libutee/trezor-crypto
 CFLAGS += -I$(TOPDIR)/tee/lib/libutils/ext/include
 CFLAGS += -I$(TOPDIR)/tee/lib/libutils/isoc/include
+CFLAGS += -I$(TOPDIR)/tee/lib/libmbedtls/include
+CFLAGS += -I$(TOPDIR)/tee/lib/libmbedtls
+CFLAGS += -I$(TOPDIR)/tee/lib/libmbedtls/mbedtls/include/mbedtls
 CFLAGS += -I$(TOPDIR)/tee/include
 
 ifeq ($(CONFIG_APPS_HELLO_WORLD),y)
@@ -42,6 +46,19 @@ ifeq ($(CONFIG_APPS_AES),y)
 CFLAGS += -I$(TOPDIR)/apps/aes
 endif
 
+ifeq ($(CONFIG_APPS_BW),y)
+#Includes
+CFLAGS += -I $(TOPDIR)/apps/bw/
+CFLAGS += -I $(TOPDIR)/apps/bw/ta/
+CFLAGS += -I $(TOPDIR)/apps/bw/ta/include/
+CFLAGS += -I $(TOPDIR)/apps/bw/ta/crypto/
+
+
+CFLAGS += -I $(TOPDIR)/crypto/libtomcrypt/include
+
+CFLAGS += -g
+endif
+
 ifeq ($(CONFIG_APPS_HOTP),y)
 CFLAGS += -I$(TOPDIR)/apps/hotp
 endif
@@ -50,7 +67,7 @@ ifeq ($(CONFIG_APPS_TEST),y)
 CFLAGS += -I$(TOPDIR)/apps/test
 endif
 
-CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_SECURE_DEBUG_UART))
+CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_SECURE_DEBUG_UART)) 
 
 OBJDIR = $(TOPDIR)/build/secure$(subst $(TOPDIR),,$(shell pwd))
 
@@ -71,7 +88,8 @@ LIBS =  -lm -lc -lnosys -lm2351_StdDriver_s -lalloc_s -lcrypt_s
 $(AOBJS_S): $(OBJDIR)/%$(OBJEXT): %.S
 	$(Q) mkdir -p $(OBJDIR)/$(dir $<)
 	@echo "AS: $<"
-	$(Q) $(CC) -c $(AFLAGS) -mcmse -DHeap_Size=0x00001400 -DStack_Size=0x00000B00 $< -o $@
+	$(Q) $(CC) -c $(AFLAGS) -mcmse -DHeap_Size=0x00002000 -DStack_Size=0x00002000 $< -o $@
+#	$(Q) $(CC) -c $(AFLAGS) -mcmse -DHeap_Size=0x00001400 -DStack_Size=0x00000B00 $< -o $@ //joao change to what is uncommented - this will make changes in startup_M2351.S
 
 $(COBJS_S): $(OBJDIR)/%$(OBJEXT): %.c
 	$(Q) mkdir -p $(OBJDIR)/$(dir $<)

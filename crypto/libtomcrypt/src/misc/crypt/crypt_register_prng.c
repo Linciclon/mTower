@@ -36,7 +36,7 @@
  *
  * Tom St Denis, tomstdenis@gmail.com, http://libtom.org
  */
-#include "tomcrypt.h"
+#include "crypto/tomcrypt.h"
 
 /**
   @file crypt_register_prng.c

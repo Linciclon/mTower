@@ -135,7 +135,8 @@ TEE_Result tee_pobj_get(TEE_UUID *uuid, void *obj_id, uint32_t obj_id_len,
 	memcpy(o->obj_id, obj_id, obj_id_len);
 	o->obj_id_len = obj_id_len;
 
-	TAILQ_INSERT_TAIL(&tee_pobjs, o, link);
+	//TAILQ_INSERT_TAIL(&tee_pobjs, o, link); //joao comentou para inserir antes a head
+	TAILQ_INSERT_HEAD(&tee_pobjs, o, link);
 	*obj = o;
 
 	res = TEE_SUCCESS;

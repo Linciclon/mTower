@@ -57,6 +57,7 @@ void *tee_user_mem_alloc(size_t len, uint32_t hint)
 	}
 	p = pvPortMalloc(len);
 	// printf("malloc p = %p\r\n", p);
+	//DMSG("Allocate at 0x%x", p);
 	if (p == NULL)
 		return NULL;
 
@@ -89,6 +90,7 @@ void *tee_user_mem_alloc(size_t len, uint32_t hint)
 void tee_user_mem_free(void *buffer)
 {
 	// printf("free p = %p\r\n", buffer);
+	//DMSG("Free Pointer: 0%x", buffer);
 	vPortFree(buffer);
 //  utee_free(buffer);
 }

@@ -740,7 +740,7 @@ void SDH_Get_SD_info(SDH_T *sdh)
             /* CSD version v1.0/1.1/1.2 in eMMC v4.4 spec for card size <= 2GB */
             u32RLen = (au32Buffer[1] & 0x000f0000UL) >> 16;
             u32CSize = ((au32Buffer[1] & 0x000003ffUL) << 2) | ((au32Buffer[2] & 0xc0000000UL) >> 30);
-            u32Mult = (au32Buffer[2] & 0x00038000UL) >> 15;
+            u32Mult = (au32Buffer[2] & 0x0003fb00UL) >> 15;  //#joao change from 0x00038000 to 0x00040000
             u32Size = (u32CSize + 1UL) * (1UL << (u32Mult + 2UL)) * (1UL << u32RLen);
 
             pSD->diskSize = u32Size / 1024UL;
@@ -761,7 +761,7 @@ void SDH_Get_SD_info(SDH_T *sdh)
         {
             u32RLen = (au32Buffer[1] & 0x000f0000UL) >> 16;
             u32CSize = ((au32Buffer[1] & 0x000003ffUL) << 2) | ((au32Buffer[2] & 0xc0000000UL) >> 30);
-            u32Mult = (au32Buffer[2] & 0x00038000UL) >> 15;
+            u32Mult = (au32Buffer[2] & 0x0003fb00UL) >> 15; //#joao change from 0x00038000 to 0x0003c000
             u32Size = (u32CSize + 1UL) * (1UL << (u32Mult + 2UL)) * (1UL << u32RLen);
 
             pSD->diskSize = u32Size / 1024UL;

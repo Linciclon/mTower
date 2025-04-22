@@ -221,78 +221,107 @@ int dh_shared_secret(dh_key *private_key, void *public_key, void *secret);
 /* max private key size */
 #define ECC_MAXSIZE  66
 
-/** Structure defines a NIST GF(p) curve */
+/** Structure defines a GF(p) curve */
 typedef struct {
-   /** The size of the curve in octets */
-   int size;
+  /** The prime that defines the field the curve is in (encoded in hex) */
+  const char *prime;
 
-   /** name of curve */
-   const char *name;
+  /** The fields A param (hex) */
+  const char *A;
 
-   /** The prime that defines the field the curve is in (encoded in hex) */
-   const char *prime;
+  /** The fields B param (hex) */
+  const char *B;
 
-   /** The fields B param (hex) */
-   const char *B;
+  /** The order of the curve (hex) */
+  const char *order;
 
-   /** The order of the curve (hex) */
-   const char *order;
-  
-   /** The x co-ordinate of the base point on the curve (hex) */
-   const char *Gx;
- 
-   /** The y co-ordinate of the base point on the curve (hex) */
-   const char *Gy;
-} ltc_ecc_set_type;
+  /** The x co-ordinate of the base point on the curve (hex) */
+  const char *Gx;
+
+  /** The y co-ordinate of the base point on the curve (hex) */
+  const char *Gy;
+
+  /** The co-factor */
+  unsigned long cofactor;
+
+  /** The OID */
+  const char *OID;
+} ltc_ecc_curve;
 
 /** A point on a ECC curve, stored in Jacbobian format such that (x,y,z) => (x/z^2, y/z^3, 1) when interpretted as affine */
 typedef struct {
-    /** The x co-ordinate */
-    void *x;
+   /** The x co-ordinate */
+   void *x;
 
-    /** The y co-ordinate */
-    void *y;
+   /** The y co-ordinate */
+   void *y;
 
-    /** The z co-ordinate */
-    void *z;
+   /** The z co-ordinate */
+   void *z;
 } ecc_point;
+
+/** ECC key's domain parameters */
+typedef struct {
+  /** The size of the curve in octets */
+  int size;
+  /** The prime that defines the field the curve is in */
+  void *prime;
+  /** The fields A param */
+  void *A;
+  /** The fields B param */
+  void *B;
+  /** The order of the curve */
+  void *order;
+  /** The base point G on the curve */
+  ecc_point base;
+  /** The co-factor */
+  unsigned long cofactor;
+  /** The OID */
+  unsigned long oid[16];
+  unsigned long oidlen;
+} ltc_ecc_dp;
 
 /** An ECC key */
 typedef struct {
-    /** Type of key, PK_PRIVATE or PK_PUBLIC */
-    int type;
+   /** Type of key, PK_PRIVATE or PK_PUBLIC */
+   int type;
 
-    /** Index into the ltc_ecc_sets[] for the parameters of this curve; if -1, then this key is using user supplied curve in dp */
-    int idx;
+   /** Structure with domain parameters */
+   ltc_ecc_dp dp;
 
-	/** pointer to domain parameters; either points to NIST curves (identified by idx >= 0) or user supplied curve */
-	const ltc_ecc_set_type *dp;
+   /** Structure with the public key */
+   ecc_point pubkey;
 
-    /** The public key */
-    ecc_point pubkey;
-
-    /** The private key */
-    void *k;
+   /** The private key */
+   void *k;
 } ecc_key;
 
 /** the ECC params provided */
-extern const ltc_ecc_set_type ltc_ecc_sets[];
+//extern const ltc_ecc_set_type ltc_ecc_sets[];
+
+/** the ECC params provided */
+extern const ltc_ecc_curve ltc_ecc_curves[];
 
 int  ecc_test(void);
 void ecc_sizes(int *low, int *high);
 int  ecc_get_size(ecc_key *key);
 
+int  ecc_find_curve(const char* name_or_oid, const ltc_ecc_curve** cu);
+int  ecc_set_curve(const ltc_ecc_curve *cu, ecc_key *key);
+int  ecc_generate_key(prng_state *prng, int wprng, ecc_key *key);
+
+
 int  ecc_make_key(prng_state *prng, int wprng, int keysize, ecc_key *key);
-int  ecc_make_key_ex(prng_state *prng, int wprng, ecc_key *key, const ltc_ecc_set_type *dp);
+int  ecc_make_key_ex(prng_state *prng, int wprng, ecc_key *key, const ltc_ecc_curve *cu);
 void ecc_free(ecc_key *key);
 
 int  ecc_export(unsigned char *out, unsigned long *outlen, int type, ecc_key *key);
 int  ecc_import(const unsigned char *in, unsigned long inlen, ecc_key *key);
-int  ecc_import_ex(const unsigned char *in, unsigned long inlen, ecc_key *key, const ltc_ecc_set_type *dp);
+int  ecc_import_ex(const unsigned char *in, unsigned long inlen, ecc_key *key, const ltc_ecc_curve *cu);
 
 int ecc_ansi_x963_export(ecc_key *key, unsigned char *out, unsigned long *outlen);
 int ecc_ansi_x963_import(const unsigned char *in, unsigned long inlen, ecc_key *key);
-int ecc_ansi_x963_import_ex(const unsigned char *in, unsigned long inlen, ecc_key *key, ltc_ecc_set_type *dp);
+int ecc_ansi_x963_import_ex(const unsigned char *in, unsigned long inlen, ecc_key *key, const ltc_ecc_curve *cu);
 
 int  ecc_shared_secret(ecc_key *private_key, ecc_key *public_key, 
                        unsigned char *out, unsigned long *outlen);
@@ -305,6 +334,26 @@ int  ecc_encrypt_key(const unsigned char *in,   unsigned long inlen,
 int  ecc_decrypt_key(const unsigned char *in,  unsigned long  inlen,
                            unsigned char *out, unsigned long *outlen, 
                            ecc_key *key);
+
+/** Formats of ECC signatures */
+typedef enum ecc_signature_type_ {
+  /* ASN.1 encoded, ANSI X9.62 */
+  LTC_ECCSIG_ANSIX962   = 0x0,
+  /* raw R, S values */
+  LTC_ECCSIG_RFC7518    = 0x1,
+  /* raw R, S, V (+27) values */
+  LTC_ECCSIG_ETH27      = 0x2,
+  /* SSH + ECDSA signature format defined by RFC5656 */
+  LTC_ECCSIG_RFC5656    = 0x3,
+} ecc_signature_type;
+
+#define ecc_sign_hash_rfc7518(in_, inlen_, out_, outlen_, prng_, wprng_, key_) \
+   ecc_sign_hash_ex(in_, inlen_, out_, outlen_, prng_, wprng_, LTC_ECCSIG_RFC7518, NULL, key_)
+
+int  ecc_sign_hash_ex(const unsigned char *in,  unsigned long inlen,
+                            unsigned char *out, unsigned long *outlen,
+                            prng_state *prng, int wprng, ecc_signature_type sigformat,
+                            int *recid, const ecc_key *key);
 
 int ecc_sign_hash_raw(const unsigned char *in,  unsigned long inlen,
                             void   *r,   void *s,
@@ -328,13 +377,13 @@ void       ltc_ecc_del_point(ecc_point *p);
 int        ltc_ecc_is_valid_idx(int n);
 
 /* point ops (mp == montgomery digit) */
-#if !defined(LTC_MECC_ACCEL) || defined(LTM_DESC) || defined(GMP_DESC)
+//#if !defined(LTC_MECC_ACCEL) || defined(LTM_DESC) || defined(GMP_DESC)
 /* R = 2P */
-int ltc_ecc_projective_dbl_point(ecc_point *P, ecc_point *R, void *modulus, void *mp);
+//int ltc_ecc_projective_dbl_point(ecc_point *P, ecc_point *R, void *modulus, void *mp);
 
 /* R = P + Q */
-int ltc_ecc_projective_add_point(ecc_point *P, ecc_point *Q, ecc_point *R, void *modulus, void *mp);
-#endif
+//int ltc_ecc_projective_add_point(ecc_point *P, ecc_point *Q, ecc_point *R, void *modulus, void *mp);
+//#endif
 
 #if defined(LTC_MECC_FP)
 /* optimized point multiplication using fixed point cache (HAC algorithm 14.117) */
@@ -350,15 +399,15 @@ int ltc_ecc_fp_add_point(ecc_point *g, void *modulus, int lock);
 void ltc_ecc_fp_tablelock(int lock);
 #endif
 
-/* R = kG */
-int ltc_ecc_mulmod(void *k, ecc_point *G, ecc_point *R, void *modulus, int map);
+//* R = kG */ //joao comentei porque o que estou a tomcrypt_pk.h que estou a usar
+//int ltc_ecc_mulmod(void *k, ecc_point *G, ecc_point *R, void *modulus, int map);
 
 #ifdef LTC_ECC_SHAMIR
-/* kA*A + kB*B = C */
-int ltc_ecc_mul2add(ecc_point *A, void *kA,
-                    ecc_point *B, void *kB,
-                    ecc_point *C,
-                         void *modulus);
+// /* kA*A + kB*B = C */
+// int ltc_ecc_mul2add(ecc_point *A, void *kA,
+//                     ecc_point *B, void *kB,
+//                     ecc_point *C,
+//                          void *modulus);
 
 #ifdef LTC_MECC_FP
 /* Shamir's trick with optimized point multiplication using fixed point cache */
@@ -448,31 +497,31 @@ int dsa_shared_secret(void          *private_key, void *base,
 /* DER handling */
 
 typedef enum ltc_asn1_type_ {
- /*  0 */
- LTC_ASN1_EOL,
- LTC_ASN1_BOOLEAN,
- LTC_ASN1_INTEGER,
- LTC_ASN1_SHORT_INTEGER,
- LTC_ASN1_BIT_STRING,
- /*  5 */
- LTC_ASN1_OCTET_STRING,
- LTC_ASN1_NULL,
- LTC_ASN1_OBJECT_IDENTIFIER,
- LTC_ASN1_IA5_STRING,
- LTC_ASN1_PRINTABLE_STRING,
- /* 10 */
- LTC_ASN1_UTF8_STRING,
- LTC_ASN1_UTCTIME,
- LTC_ASN1_CHOICE,
- LTC_ASN1_SEQUENCE,
- LTC_ASN1_SET,
- /* 15 */
- LTC_ASN1_SETOF,
- LTC_ASN1_RAW_BIT_STRING,
- LTC_ASN1_TELETEX_STRING,
- LTC_ASN1_CONSTRUCTED,
- LTC_ASN1_CONTEXT_SPECIFIC,
-} ltc_asn1_type;
+  /*  0 */
+  LTC_ASN1_EOL,
+  LTC_ASN1_BOOLEAN,
+  LTC_ASN1_INTEGER,
+  LTC_ASN1_SHORT_INTEGER,
+  LTC_ASN1_BIT_STRING,
+  /*  5 */
+  LTC_ASN1_OCTET_STRING,
+  LTC_ASN1_NULL,
+  LTC_ASN1_OBJECT_IDENTIFIER,
+  LTC_ASN1_IA5_STRING,
+  LTC_ASN1_PRINTABLE_STRING,
+  /* 10 */
+  LTC_ASN1_UTF8_STRING,
+  LTC_ASN1_UTCTIME,
+  LTC_ASN1_CHOICE,
+  LTC_ASN1_SEQUENCE,
+  LTC_ASN1_SET,
+  /* 15 */
+  LTC_ASN1_SETOF,
+  LTC_ASN1_RAW_BIT_STRING,
+  LTC_ASN1_TELETEX_STRING,
+  LTC_ASN1_GENERALIZEDTIME,
+  LTC_ASN1_CUSTOM_TYPE,
+ } ltc_asn1_type;
 
 /** A LTC ASN.1 list type */
 typedef struct ltc_asn1_list_ {
@@ -497,6 +546,22 @@ typedef struct ltc_asn1_list_ {
       LTC_MACRO_list[LTC_MACRO_temp].size = (Size);  \
       LTC_MACRO_list[LTC_MACRO_temp].used = 0;       \
    } while (0)
+
+
+enum ltc_der_seq {
+  LTC_DER_SEQ_ZERO = 0x0u,
+  /** Bit0  - [0]=Unordered (SET or SETOF)
+   *          [1]=Ordered (SEQUENCE) */
+  LTC_DER_SEQ_UNORDERED = LTC_DER_SEQ_ZERO,
+  LTC_DER_SEQ_ORDERED = 0x1u,
+  /** Bit1  - [0]=Relaxed
+   *          [1]=Strict */
+  LTC_DER_SEQ_RELAXED = LTC_DER_SEQ_ZERO,
+  LTC_DER_SEQ_STRICT = 0x2u,
+  /** Alternative naming */
+  LTC_DER_SEQ_SET = LTC_DER_SEQ_UNORDERED,
+  LTC_DER_SEQ_SEQUENCE = LTC_DER_SEQ_ORDERED,
+};
 
 /* SEQUENCE */
 int der_encode_sequence_ex(ltc_asn1_list *list, unsigned long inlen,

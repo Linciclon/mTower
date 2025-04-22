@@ -42,8 +42,18 @@ struct tee_pobj {
 	uint32_t obj_id_len;
 	uint32_t flags;
 	bool temporary;
+	bool creating;
 	/* Filesystem handling this object */
 	const struct tee_file_operations *fops;
+	void *data; //add this intead of fops
+    size_t data_len; //add this intead of fops
+};
+
+enum tee_pobj_usage {
+	TEE_POBJ_USAGE_OPEN,
+	TEE_POBJ_USAGE_RENAME,
+	TEE_POBJ_USAGE_CREATE,
+	TEE_POBJ_USAGE_ENUM,
 };
 
 TEE_Result tee_pobj_get(TEE_UUID *uuid, void *obj_id, uint32_t obj_id_len,

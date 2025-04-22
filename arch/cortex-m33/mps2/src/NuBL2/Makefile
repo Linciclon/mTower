@@ -28,7 +28,7 @@ CFLAGS += -I$(TOPDIR)/include/mtower
 CFLAGS += -I../CMSIS/Include
 CFLAGS += -I../StdDriver/inc
 
-CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_SECURE_DEBUG_UART))
+CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_SECURE_DEBUG_UART)) -g
 
 OBJDIR = $(TOPDIR)/build/secure$(subst $(TOPDIR),,$(shell pwd))
 

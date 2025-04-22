@@ -52,7 +52,7 @@ extern "C" {
 #define MAXBLOCKSIZE  128
 
 /* descriptor table size */
-#define TAB_SIZE      32
+#define TAB_SIZE      34
 
 /* error codes [will be expanded in future releases] */
 enum {

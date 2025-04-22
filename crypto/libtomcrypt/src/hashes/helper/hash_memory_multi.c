@@ -75,7 +75,7 @@ int hash_memory_multi(int hash, unsigned char *out, unsigned long *outlen,
        return CRYPT_BUFFER_OVERFLOW;
     }
 
-    md = XMALLOC(sizeof(hash_state));
+    md = CXMALLOC(sizeof(hash_state)); //JOAO ALTEROU AQUI CXMALLOC
     if (md == NULL) {
        return CRYPT_MEM;
     }

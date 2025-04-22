@@ -829,7 +829,8 @@ TEE_Result tee_ta_init_user_ta_session(const TEE_UUID *uuid,
 //  utc->entry_func = ta_head->entry.ptr64;
   utc->ctx.ops = &user_ta_ops;
 
-  TAILQ_INSERT_TAIL(&tee_ctxes, &utc->ctx, link);
+  TAILQ_INSERT_HEAD(&tee_ctxes, &utc->ctx, link);
+  //TAILQ_INSERT_TAIL(&tee_ctxes, &utc->ctx, link); //joao comentou para inserir antes a head
 
   DMSG("Context was successfully inserted!");
 

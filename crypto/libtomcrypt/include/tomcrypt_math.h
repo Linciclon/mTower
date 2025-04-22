@@ -386,7 +386,12 @@ typedef struct {
        @param map Boolean indicated whether to map back to affine or not (can be ignored if you work in affine only)
        @return CRYPT_OK on success
    */
-   int (*ecc_ptmul)(void *k, ecc_point *G, ecc_point *R, void *modulus, int map);
+  int (*ecc_ptmul)(     void *k,
+   const ecc_point *G,
+         ecc_point *R,
+              void *a,
+              void *modulus,
+               int  map);
 
    /** ECC GF(p) point addition 
        @param P    The first point
@@ -396,7 +401,12 @@ typedef struct {
        @param mp   The "b" value from montgomery_setup()
        @return CRYPT_OK on success
    */
-   int (*ecc_ptadd)(ecc_point *P, ecc_point *Q, ecc_point *R, void *modulus, void *mp);
+  int (*ecc_ptadd)(const ecc_point *P,
+   const ecc_point *Q,
+         ecc_point *R,
+              void *ma,
+              void *modulus,
+              void *mp);
 
    /** ECC GF(p) point double 
        @param P    The first point
@@ -405,7 +415,11 @@ typedef struct {
        @param mp   The "b" value from montgomery_setup()
        @return CRYPT_OK on success
    */
-   int (*ecc_ptdbl)(ecc_point *P, ecc_point *R, void *modulus, void *mp);
+  int (*ecc_ptdbl)(const ecc_point *P,
+   ecc_point *R,
+        void *ma,
+        void *modulus,
+        void *mp);
 
    /** ECC mapping from projective to affine, currently uses (x,y,z) => (x/z^2, y/z^3, 1)
        @param P     The point to map
@@ -527,7 +541,7 @@ extern const ltc_math_descriptor gmp_desc;
 #define mp_sqr(a, b)                 ltc_mp.sqr(a, b)
 #define mp_div(a, b, c, d)           ltc_mp.mpdiv(a, b, c, d)
 #define mp_div_2(a, b)               ltc_mp.div_2(a, b)
-#define mp_mod(a, b, c)              ltc_mp.mod(a, b, c)
+#define mp_mod(a, b, c)              ltc_mp.mpdiv(a, b, NULL, c)
 #define mp_mod_d(a, b, c)            ltc_mp.modi(a, b, c)
 #define mp_gcd(a, b, c)              ltc_mp.gcd(a, b, c)
 #define mp_lcm(a, b, c)              ltc_mp.lcm(a, b, c)

@@ -214,6 +214,9 @@ static void menuTask(void *pvParameters)
 #ifdef CONFIG_APPS_SPY
     printf("| [8] - Run spy app that trying to get protected data       |\n");
 #endif
+#ifdef 
+    printf("| [8] - Run spy app that trying to get protected data       |\n");
+#endif
     printf("+-----------------------------------------------------------+\n");
 
     printf("\n[%c]\n", ch = GetChar());
