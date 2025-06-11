@@ -58,8 +58,9 @@
 //#include "tee_client_api.h"
 //#include "tee.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 struct tee_ta_session *current_session;
 /* This mutex protects the critical section in tee_ta_init_session */
 //struct mutex tee_ta_mutex = MUTEX_INITIALIZER;

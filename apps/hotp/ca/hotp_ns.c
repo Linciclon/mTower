@@ -9,8 +9,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 /* OP-TEE TEE client API (built by optee_client) */
 #include <tee_client_api.h>
 

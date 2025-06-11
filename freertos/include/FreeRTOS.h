@@ -967,6 +967,10 @@
     #define configENABLE_BACKWARD_COMPATIBILITY    1
 #endif
 
+#ifndef traceISR_ENTER
+    #define traceISR_ENTER()
+#endif
+
 #ifndef configPRINTF
 
 /* configPRINTF() was not defined, so define it away to nothing.  To use

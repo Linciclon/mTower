@@ -32,8 +32,9 @@
 #include <assert.h>
 #include <bignum2.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #define MBEDTLS_MPI_MAX_LIMBS                             10000
 #define BIGINT_HDR_SIZE_IN_U32	2
 #define CFG_TA_BIGNUM_MAX_BITS 2048

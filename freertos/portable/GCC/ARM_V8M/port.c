@@ -106,26 +106,27 @@ static void prvTaskExitError( void );
 
 /*-----------------------------------------------------------*/
 
+//#ifndef PLATFORM_LPC55S69
 /*
  * See header file for description.
  */
-StackType_t *pxPortInitialiseStack(StackType_t *pxTopOfStack,
-    TaskFunction_t pxCode, void *pvParameters)
-{
-  /* Simulate the stack frame as it would be created by a context switch
-   interrupt. */
-  pxTopOfStack--; /* Offset added to account for the way the MCU uses the stack on entry/exit of interrupts. */
-  *pxTopOfStack = portINITIAL_XPSR; /* xPSR */
-  pxTopOfStack--;
-  *pxTopOfStack = (StackType_t) pxCode; /* PC */
-  pxTopOfStack--;
-  *pxTopOfStack = (StackType_t) prvTaskExitError; /* LR */
-  pxTopOfStack -= 5; /* R12, R3, R2 and R1. */
-  *pxTopOfStack = (StackType_t) pvParameters; /* R0 */
-  pxTopOfStack -= 8; /* R11..R4. */
+// StackType_t *pxPortInitialiseStack(StackType_t *pxTopOfStack,
+//     TaskFunction_t pxCode, void *pvParameters)
+// {
+//   /* Simulate the stack frame as it would be created by a context switch
+//    interrupt. */
+//   pxTopOfStack--; /* Offset added to account for the way the MCU uses the stack on entry/exit of interrupts. */
+//   *pxTopOfStack = portINITIAL_XPSR; /* xPSR */
+//   pxTopOfStack--;
+//   *pxTopOfStack = (StackType_t) pxCode; /* PC */
+//   pxTopOfStack--;
+//   *pxTopOfStack = (StackType_t) prvTaskExitError; /* LR */
+//   pxTopOfStack -= 5; /* R12, R3, R2 and R1. */
+//   *pxTopOfStack = (StackType_t) pvParameters; /* R0 */
+//   pxTopOfStack -= 8; /* R11..R4. */
 
-  return pxTopOfStack;
-}
+//   return pxTopOfStack;
+// }
 /*-----------------------------------------------------------*/
 
 static void prvTaskExitError(void)
@@ -177,70 +178,76 @@ void prvPortStartFirstTask(void)
 }
 /*-----------------------------------------------------------*/
 
-/*
- * See header file for description.
- */
-BaseType_t xPortStartScheduler(void)
-{
-  /* Make PendSV, CallSV and SysTick the same priroity as the kernel. */
-  *(portNVIC_SYSPRI2) |= portNVIC_PENDSV_PRI;
-  *(portNVIC_SYSPRI2) |= portNVIC_SYSTICK_PRI;
+// #ifndef PLATFORM_LPC55S69
+// /*
+//  * See header file for description.
+//  */
+// BaseType_t xPortStartScheduler(void)
+// {
+//   /* Make PendSV, CallSV and SysTick the same priroity as the kernel. */
+//   *(portNVIC_SYSPRI2) |= portNVIC_PENDSV_PRI;
+//   *(portNVIC_SYSPRI2) |= portNVIC_SYSTICK_PRI;
 
-  /* Start the timer that generates the tick ISR.  Interrupts are disabled
-   here already. */
-  prvSetupTimerInterrupt();
+//   /* Start the timer that generates the tick ISR.  Interrupts are disabled
+//    here already. */
+//   prvSetupTimerInterrupt();
 
-  /* Initialise the critical nesting count ready for the first task. */
-  uxCriticalNesting = 0;
+//   /* Initialise the critical nesting count ready for the first task. */
+//   uxCriticalNesting = 0;
 
-  /* Start the first task. */
-  prvPortStartFirstTask();
+//   /* Start the first task. */
+//   prvPortStartFirstTask();
 
-  /* Should not get here! */
-  return 0;
-}
+//   /* Should not get here! */
+//   return 0;
+// }
+// /*-----------------------------------------------------------*/
+// #endif
+
+//#ifndef PLATFORM_LPC55S69
+// void vPortEndScheduler(void)
+// {
+//   /* Not implemented in ports where there is nothing to return to.
+//    Artificially force an assert. */
+//   configASSERT(uxCriticalNesting == 1000UL);
+// }
 /*-----------------------------------------------------------*/
 
-void vPortEndScheduler(void)
-{
-  /* Not implemented in ports where there is nothing to return to.
-   Artificially force an assert. */
-  configASSERT(uxCriticalNesting == 1000UL);
-}
+//#ifndef PLATFORM_LPC55S69
+// void vPortYield(void)
+// {
+//   /* Set a PendSV to request a context switch. */
+//   *( portNVIC_INT_CTRL) = portNVIC_PENDSVSET;
+
+//   /* Barriers are normally not required but do ensure the code is completely
+//    within the specified behaviour for the architecture. */
+
+//   __asm volatile( "dsb" ::: "memory" );
+//   __asm volatile( "isb" );
+
+// }
 /*-----------------------------------------------------------*/
 
-void vPortYield(void)
-{
-  /* Set a PendSV to request a context switch. */
-  *( portNVIC_INT_CTRL) = portNVIC_PENDSVSET;
-
-  /* Barriers are normally not required but do ensure the code is completely
-   within the specified behaviour for the architecture. */
-
-  __asm volatile( "dsb" ::: "memory" );
-  __asm volatile( "isb" );
-
-}
+//#ifndef PLATFORM_LPC55S69
+// void vPortEnterCritical(void)
+// {
+//   portDISABLE_INTERRUPTS();
+//   uxCriticalNesting++;
+//   __asm volatile( "dsb" ::: "memory" );
+//   __asm volatile( "isb" );
+// }
 /*-----------------------------------------------------------*/
 
-void vPortEnterCritical(void)
-{
-  portDISABLE_INTERRUPTS();
-  uxCriticalNesting++;
-  __asm volatile( "dsb" ::: "memory" );
-  __asm volatile( "isb" );
-}
-/*-----------------------------------------------------------*/
-
-void vPortExitCritical( void )
-{
-	configASSERT( uxCriticalNesting );
-    uxCriticalNesting--;
-    if( uxCriticalNesting == 0 )
-    {
-        portENABLE_INTERRUPTS();
-    }
-}
+//#ifndef PLATFORM_LPC55S69
+// void vPortExitCritical( void )
+// {
+// 	configASSERT( uxCriticalNesting );
+//     uxCriticalNesting--;
+//     if( uxCriticalNesting == 0 )
+//     {
+//         portENABLE_INTERRUPTS();
+//     }
+// }
 /*-----------------------------------------------------------*/
 uint32_t ulSetInterruptMaskFromISR(void)
 {

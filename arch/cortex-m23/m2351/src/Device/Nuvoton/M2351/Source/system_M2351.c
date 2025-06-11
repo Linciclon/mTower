@@ -16,8 +16,9 @@
 #include <stdint.h>
 #include "NuMicro.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #if defined (__ARM_FEATURE_CMSE) &&  (__ARM_FEATURE_CMSE == 3U)
 #include "partition_M2351.h"
 extern void SCU_IRQHandler(void);

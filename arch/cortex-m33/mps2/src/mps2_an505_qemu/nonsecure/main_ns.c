@@ -26,8 +26,9 @@
 #include "version.h"
 #include "config.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-#include <stddef.h>
+#endif#include <stddef.h>
 
 #include <stdint.h>
 #include <stdio.h>

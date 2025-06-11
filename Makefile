@@ -28,6 +28,8 @@ TOPDIR := ${shell pwd | sed -e 's/ /\\ /g'}
 #  V=1,2: Enable echo of commands
 #  V=2:   Enable bug/verbose options in tools and scripts
 
+$(info O valor de V é: $(V))
+
 ifeq ($(V),1)
 export Q :=
 else
@@ -173,15 +175,16 @@ mtower_libs:
 # Create the final mTower executable by build process.
 
 $(BIN): context mtower_libs 
-	$(Q) $(MAKE) -C tools -f Makefile.host TOPDIR="$(TOPDIR)" fwinfogen$(HOSTEXEEXT)
-	$(Q) $(MAKE) -C $(ARCH_SRC) TOPDIR="$(TOPDIR)" $(BIN)
+	@echo "context = $(context)"
+	@echo "mtower_libs = $(mtower_libs)"
+	$(MAKE) -C tools -f Makefile.host TOPDIR="$(TOPDIR)" fwinfogen$(HOSTEXEEXT) 
+	$(Q) $(MAKE) -C $(ARCH_SRC) TOPDIR="$(TOPDIR)" $(BIN) 
 	$(Q) if [ -e $(TOPDIR)/mtower_ns.bin ] && [ -e $(TOPDIR)/mtower_s.bin ]; then \
 		$(ECHO) -e "$(GREEN)***********************************************$(NORMAL)" ; \
 		$(ECHO) -e "$(GREEN)**** mTower has been successfully compiled ****$(NORMAL)" ; \
 		$(ECHO) -e "$(GREEN)***********************************************$(NORMAL)" ; \
 	fi
-
-
+	  
 # Flash MCU.
 #
 # flash

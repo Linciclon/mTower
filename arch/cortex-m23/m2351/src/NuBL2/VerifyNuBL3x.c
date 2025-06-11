@@ -14,8 +14,9 @@
 
 // #define printf(...)
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #define DBG_EN      0
 
 int32_t Cal_SHA256_Flash(uint32_t u32Addr, uint32_t u32Bytes, uint32_t *pu32Digest);

@@ -27,8 +27,9 @@
 #include "config.h"
 #include "version.h"
 #include "tee_api_types.h"
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 /* Pre-processor Definitions. */
 #define NORMAL  "\e[0m"
 #define BLACK   "\e[0;30m1"
@@ -559,13 +560,13 @@ void SCU_IRQHandler(void)
   printf("violation interrupt event\n"NORMAL);
 }
 #endif
-/**
- * @brief         SysTick_Handler - SysTick IRQ Handler.
- *
- * @param         None
- *
- * @returns       None
- */
+// /**
+//  * @brief         SysTick_Handler - SysTick IRQ Handler.
+//  *
+//  * @param         None
+//  *
+//  * @returns       None
+//  */
 //void SysTick_Handler(void)
 //{
 //  static uint32_t u32Ticks;

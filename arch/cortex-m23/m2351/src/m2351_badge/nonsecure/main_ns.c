@@ -26,8 +26,9 @@
 #include "M2351.h"
 #include "version.h"
 #include "config.h"
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
 #include "task.h"

@@ -42,8 +42,9 @@
 //#include <teec_trace.h>
 //#include <unistd.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #ifndef __aligned
 #define __aligned(x) __attribute__((__aligned__(x)))
 #endif

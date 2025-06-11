@@ -7,7 +7,9 @@
 #include <utee_syscalls.h>
 #include <stdio.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
+#endif
 
 #define ACCESS_RW	(TEE_MEMORY_ACCESS_READ | TEE_MEMORY_ACCESS_WRITE)
 #define ACCESS_W_ANY	(TEE_MEMORY_ACCESS_WRITE | TEE_MEMORY_ACCESS_ANY_OWNER)

@@ -33,8 +33,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 
 // define this globally (e.g. gcc -DPRINTF_INCLUDE_CONFIG_H ...) to include the
 // printf_config.h header file

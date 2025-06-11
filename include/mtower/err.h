@@ -22,8 +22,9 @@
 #define __INCLUDE_MTOWER_ERR_H_
 
 /* Included Files */
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 /* Pre-processor Definitions */
 /* All C pre-processor macros are defined here. */
 

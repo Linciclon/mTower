@@ -10,8 +10,9 @@
 #include <string.h>
 #include "NuMicro.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #define NUBL32_FW_INFO_BASE     0x0003fb00ul    // 224K  //joao change from 0x38000 -> 0x00040000ul 
 #define NUBL33_FW_INFO_BASE     0x10078000ul    // 480K (Non-secure flash region)  
 

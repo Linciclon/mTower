@@ -45,7 +45,9 @@
 #include "tee.h"
 #include "tee_api_defines.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
+#endif
 
 extern const struct pseudo_ta_head __start_ta_head_section;
 extern const struct pseudo_ta_head __stop_ta_head_section;

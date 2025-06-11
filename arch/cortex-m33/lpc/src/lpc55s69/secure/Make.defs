@@ -1,0 +1,141 @@
+############################################################################
+# arch/cortex-m23/m2351/src/numaker_pfm_m2351/secure/Make.defs
+#
+# Copyright (c) 2018-2019 Samsung Electronics Co., Ltd. All Rights Reserved.
+# Author: Taras Drozdovskyi t.drozdovsky@samsung.com
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+############################################################################
+
+-include $(TOPDIR)/Make.defs
+-include $(TOPDIR)/.config
+
+HEAD_ASRC = 
+
+# Common m2351 files
+
+CMN_ASRCS = 
+
+
+#               ../../../../../../tee/lib/libutee/btc.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/address.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/base32.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/base58.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/bip32v6.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/bip39v6.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/blake2b.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/blake2s.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/blake256.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/cash_addr.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/curves.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ecdsa.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/groestl.c  \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/hasher.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/hmac_drbg.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/nem.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/nist256p1.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/rc4.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/rfc6979.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ripemd160.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/script.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/secp256k1v6.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/segwit_addr.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/sha3.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/shamir.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/slip39.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/aes/aes_modes.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/aes/aescrypt.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/aes/aeskey.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/aes/aestab.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/chacha20poly1305/chacha_merged.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/chacha20poly1305/chacha20poly1305.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/chacha20poly1305/poly1305-donna.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/chacha20poly1305/rfc7539.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/curve25519-donna-32bit.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/curve25519-donna-helpers.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/curve25519-donna-scalarmult-base.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519-donna-32bit-tables.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519-donna-basepoint-table.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519-donna-impl-base.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519-keccak.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519-sha3.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/ed25519.c \
+#               ../../../../../../tee/lib/libutee/trezor-crypto/ed25519-donna/modm-donna-32bit.c \
+
+CMN_CSRCS =    ../../../../../../tee/lib/libutee/tee_api_operations.c \
+               ../../../../../../tee/lib/libutee/tee_api.c \
+               ../../../../../../tee/lib/libutee/tee_api_panic.c \
+               ../../../../../../tee/lib/libutee/tee_user_mem.c \
+               ../../../../../../tee/lib/libutee/tee_api_objects.c \
+               ../../../../../../tee/lib/libutils/ext/trace.c \
+               ../../../../../../tee/lib/libutils/ext/buf_compare_ct.c \
+               ../../../../../../tee/lib/libutils/ext/include/mempool.c \
+               ../../../../../../tee/tee/tee_svc_cryp.c \
+               ../../../../../../tee/tee/tee_svc_storage.c \
+               ../../../../../../tee/tee/tee_cryp_utl.c \
+               ../../../../../../tee/tee/tee_svc.c \
+               ../../../../../../tee/tee/tee_obj.c \
+               ../../../../../../tee/tee/tee_pobj.c \
+               ../../../../../../tee/tee/uuid.c \
+               ../../../../../../tee/kernel/entry_std.c \
+               ../../../../../../tee/kernel/pseudo_ta.c \
+               ../../../../../../tee/kernel/user_ta.c \
+               ../../../../../../tee/kernel/tee_ta_manager.c \
+               ../../../../../../tee/lib/libutee/trezor-crypto/rand.c \
+               ../../../../../../tee/lib/libutee/trezor-crypto/pbkdf2.c \
+               ../../../../../../tee/lib/libmbedtls/core/bignum2.c \
+               ../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c
+
+
+
+# Required CHIP files
+
+# CHIP_ASRCS_S = ../../Device/Nuvoton/M2351/Source/GCC/startup_M2351.S #NEED ATENTION HERE!! provavelmente vou usar o outro .S
+
+# CHIP_CSRCS_S = ../../Device/Nuvoton/M2351/Source/system_M2351.c \
+#               main.c
+
+CHIP_CSRCS_S = main.c
+
+ifeq ($(CONFIG_APPS_HELLO_WORLD),y)
+CHIP_CSRCS_S += ../../../../../../apps/hello_world/ta/hello_world_ta.c
+endif
+
+ifeq ($(CONFIG_APPS_BW),y)
+#sources
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/bw_ta.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/bip39.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/bip32.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/bignum.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/ecdsa.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/hmac.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/memzero.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/pbkdf2.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/secp256k1.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/sha2.c
+CHIP_CSRCS_S += ../../../../../../apps/bw/ta/crypto/ta_ripemd160.c
+endif
+
+
+ifeq ($(CONFIG_APPS_AES),y)
+CHIP_CSRCS_S += ../../../../../../apps/aes/ta/aes_ta.c
+endif
+
+ifeq ($(CONFIG_APPS_HOTP),y)
+CHIP_CSRCS_S += ../../../../../../apps/hotp/ta/hotp_ta.c
+endif
+
+ifeq ($(CONFIG_APPS_TEST),y)
+CHIP_CSRCS_S += ../../../../../../apps/test/ta/test_ta.c
+endif

@@ -12,8 +12,9 @@
 #include "NuMicro.h"
 #include "NuBL2.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #define SET_SECURE_BOOT     (0) // Set 1 to support modify CFG0[5] MBS 0 for booting from Secure Bootloader 
 #define ENABLE_XOM0_REGION  (0) // Set 1 to configure VerifyNuBL3x.c code in XOM0 region, and cannot trace VerifyNuBL3x.c flow in ICE debug mode
 

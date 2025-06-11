@@ -1,0 +1,25 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the docs folder of mTower repository.
+#
+
+choice
+	prompt "lpc55S69 platform selection"
+	default PLATFORM_LPC55S69
+
+config PLATFORM_LPC55S69
+	bool "lpc55s69 board"
+	---help---
+		LPC55S69 board.
+
+endchoice
+
+config PLATFORM
+	string
+	default "lpc55s69"  if PLATFORM_LPC55S69
+
+if PLATFORM_LPC55S69
+#comment "lpc55s69 Peripheral Configuration Options"
+source arch/cortex-m33/lpc/src/lpc55s69/Kconfig
+endif # PLATFORM_LPC55S69
+

@@ -34,7 +34,9 @@
 //#include <util.h>
 //#include <types_ext.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
+#endif
 
 #if (TRACE_LEVEL > 0)
 

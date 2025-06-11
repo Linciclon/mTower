@@ -8,7 +8,9 @@
 #include <tee/uuid.h>
 #include <util.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
+#endif
 
 void tee_uuid_to_octets(uint8_t *d, const TEE_UUID *s)
 {

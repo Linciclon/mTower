@@ -36,8 +36,9 @@ extern "C" {
 #include <stdint.h>
 #include <config.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #ifndef BINARY_PREFIX
 #error "BINARY_PREFIX not defined"
 #endif

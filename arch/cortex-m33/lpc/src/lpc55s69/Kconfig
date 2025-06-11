@@ -1,0 +1,4 @@
+if PLATFORM_LPC55S69
+comment "LPC55S69 Peripheral Configuration Options"
+
+endif # PLATFORM_LPC55S69

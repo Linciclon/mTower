@@ -35,7 +35,9 @@
 #include <tee_api_defines_extensions.h>
 #include <tee_api_types.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
+#endif
 
 void tee_user_mem_mark_heap(void);
 size_t tee_user_mem_check_heap(void);

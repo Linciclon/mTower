@@ -27,6 +27,7 @@ CFLAGS += -I$(TOPDIR)/arch/$(CONFIG_ARCH)/$(CONFIG_ARCH_FAMILY)/src/$(CONFIG_PLA
 CFLAGS += -I./portable/GCC/$(FREE_RTOS_ARCH)
 CFLAGS += -I../arch/$(subst ",,$(CONFIG_ARCH))/$(subst ",,$(CONFIG_ARCH_FAMILY))/src/$(subst ",,$(CONFIG_PLATFORM))/nonsecure
 CFLAGS += -I$(TOPDIR)/arch/$(CONFIG_ARCH)/$(CONFIG_ARCH_FAMILY)/src/CMSIS/Include
+CFLAGS += -I$(TOPDIR)/arch/$(CONFIG_ARCH)/$(CONFIG_ARCH_FAMILY)/src/device/Include
 ifeq ($(WORLD), secure)
 CFLAGS += -mcmse
 endif

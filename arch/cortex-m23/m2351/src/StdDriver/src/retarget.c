@@ -13,8 +13,9 @@
 #include <stdio.h>
 #include "NuMicro.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #if defined (__ICCARM__)
 # pragma diag_suppress=Pm150
 #endif

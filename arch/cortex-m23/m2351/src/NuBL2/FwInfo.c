@@ -11,8 +11,9 @@
 #include "NuMicro.h"
 #include "NuBL2.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 /*
     Description of FwInfo format:   
     [ Public key ]

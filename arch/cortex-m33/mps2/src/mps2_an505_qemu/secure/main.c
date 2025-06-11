@@ -26,8 +26,9 @@
 #include "version.h"
 #include "tee_api_types.h"
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-#include "ARMCM33_DSP_FP_TZ.h"
+#endif#include "ARMCM33_DSP_FP_TZ.h"
 #include "partition_ARMCM33.h"
 
 #include <stdint.h>

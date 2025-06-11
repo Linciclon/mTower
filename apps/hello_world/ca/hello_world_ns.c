@@ -29,8 +29,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifndef PLATFORM_LPC55S69
 #include "printf.h"
-
+#endif
 #include "tee_client_api.h"
 
 /* To the the UUID (found the the TA's h-file(s)) */
