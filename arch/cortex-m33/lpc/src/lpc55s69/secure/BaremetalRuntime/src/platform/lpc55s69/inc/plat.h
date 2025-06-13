@@ -12,7 +12,7 @@
 #define PLAT_CODE_MEM_SIZE  0x18000
 
 #define PLAT_MEM_BASE       0x20010000
-#define PLAT_MEM_SIZE       0x7000
+#define PLAT_MEM_SIZE       0x10000
 
 #define PLAT_UART_ADDR      0x40088000UL
 #define UART_NVIC_IRQ_ID    16

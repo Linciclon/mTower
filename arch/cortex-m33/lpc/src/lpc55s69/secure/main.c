@@ -29,6 +29,9 @@
 #include "tee_api_types.h"
 #ifndef PLATFORM_LPC55S69
 #include "printf.h"
+
+#include <entry_std.h>
+
 #endif
 /* Pre-processor Definitions. */
 #define NORMAL  "\e[0m"
@@ -129,12 +132,12 @@ extern TEE_Result tee_cryp_init(void);
 #define BAO_IMAGE_START     0x10000000UL
 #define BAO_HC_OFF          0x41UL
 #define BAO_HC_ADDR         BAO_IMAGE_START+BAO_HC_OFF
-#define BAO_HC_BLNS_ID       0x0
+#define CROSSCON_HC_BLNS_ID       0x0
 #define VMS_IPC_BASE        0x20017000UL
 #define VMS_IPC_SIZE        0x1000
 
 
-void (*bao_hypercall)(unsigned int, unsigned int, unsigned int) =
+void (*crosshyp_hypercall)(unsigned int, unsigned int, unsigned int) =
     (void (*)(unsigned int, unsigned int, unsigned int))BAO_HC_ADDR;
 
 
@@ -164,28 +167,50 @@ static void Boot_Init(uint32_t u32BootBase)
    will cause a state switch from Secure to Non-secure */
   //fp = cmse_nsfptr_create(fp);
 
-  bao_hypercall(BAO_HC_BLNS_ID, 0, 0);
+  //CROSSCON Hypervisor will be responsible for booting two VMs
+  crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+
+  //after hypercall usa values of R0, R1, R2 to interpret NS call
+  //here will jump to NSC regions, i.e., the ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data) function
+  //__asm__ volatile("b my_fixed_section" ::: "memory");
+
+  uint32_t cmd;
+  struct tee_ioctl_buf_data *buf_data;
+
+  __asm volatile (
+    "mov %[out_cmd], r1\n"
+    "mov %[out_buf], r2\n"
+    : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
+    :                                                  // no inputs
+    :                                                  // no clobbers
+  );
+
+  while (1)
+  {
+      ioctl(cmd, buf_data);
+      crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+  }
+  
+
+
 
   /* Check if the Reset_Handler address is in Non-secure space */
   //if (cmse_is_nsfptr(fp) && (((uint32_t) fp & 0xf0000000) == 0x10000000)) {
     //printf("Jump to execute Non-secure FreeRTOS (BL33) ...\n");
     //fp(0); /* Non-secure function call */
-    //bao_hypercall(BAO_HC_IPC_ID, ipc_id, event_id);
   //} else {
-    /* Something went wrong */
-    printf("No code in non-secure region!\n");
-    printf("CPU will halted at non-secure state\n");
+  /* Something went wrong */
+  printf("No code in non-secure region!\n");
+  printf("CPU will halted at non-secure state\n");
 
-    // /* Set nonsecure MSP in nonsecure region */
-    // __TZ_set_MSP_NS(NON_SECURE_SRAM_BASE + 512);
+  // /* Set nonsecure MSP in nonsecure region */
+  // __TZ_set_MSP_NS(NON_SECURE_SRAM_BASE + 512);
+  // /* Try to halted in non-secure state (SRAM) */
+  // M32(NON_SECURE_SRAM_BASE) = JUMP_HERE;
+  // fp = (NonSecure_funcptr) (NON_SECURE_SRAM_BASE + 1);
+  // fp(0);
 
-    // /* Try to halted in non-secure state (SRAM) */
-    // M32(NON_SECURE_SRAM_BASE) = JUMP_HERE;
-    // fp = (NonSecure_funcptr) (NON_SECURE_SRAM_BASE + 1);
-    // fp(0);
-
-    while (1);
-  //}
+  while (1);
 }
 
 // /**

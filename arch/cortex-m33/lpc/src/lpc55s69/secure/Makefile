@@ -104,10 +104,8 @@ CFLAGS += -I $(TOPDIR)/apps/bw/
 CFLAGS += -I $(TOPDIR)/apps/bw/ta/
 CFLAGS += -I $(TOPDIR)/apps/bw/ta/include/
 CFLAGS += -I $(TOPDIR)/apps/bw/ta/crypto/
-
 CFLAGS += -I $(TOPDIR)/crypto/libtomcrypt/include
-
-CFLAGS += -g
+$(info I'm compiling BW!!)
 endif
 
 ifeq ($(CONFIG_APPS_HOTP),y)

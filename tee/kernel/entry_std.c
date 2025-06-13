@@ -45,6 +45,7 @@
 #include "tee_client_api.h"
 #include "tee.h"
 #include "tee/uuid.h"
+#include <kernel/entry_std.h>
 
 #include <kernel/tee_ta_manager.h>
 
@@ -89,7 +90,7 @@ TEEC_Result tee_ioctl_close_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data
  *
  * @returns       None
  */
-__attribute__((cmse_nonsecure_entry))
+//__attribute__((cmse_nonsecure_entry))
 int32_t ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data)
 {
 //  printf("Secure ioctl: cmd = %x\n", cmd);

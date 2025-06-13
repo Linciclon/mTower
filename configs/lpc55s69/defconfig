@@ -460,7 +460,7 @@ CONFIG_APPS_HELLO_WORLD=y
 #
 #CONFIG_APPS_AES=y #activate only for final tests
 #CONFIG_APPS_HOTP=y  #activate only for final tests
-#CONFIG_APPS_BW=y  #activate only for final tests
+CONFIG_APPS_BW=y  #activate only for final tests
 
 #
 # Test suite:
