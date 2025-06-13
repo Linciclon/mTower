@@ -9,7 +9,7 @@
 
 //#if GUEST0
 #define PLAT_CODE_MEM_BASE  0x20000
-#define PLAT_CODE_MEM_SIZE  0x18000
+#define PLAT_CODE_MEM_SIZE  0x16000
 
 #define PLAT_MEM_BASE       0x20010000
 #define PLAT_MEM_SIZE       0x10000
@@ -51,7 +51,7 @@
 
 //#endif
 
-#define STACK_SIZE          0x4000
+#define STACK_SIZE          0x8000
 
 #define PLAT_TIMER_FREQ     12000000ULL
 

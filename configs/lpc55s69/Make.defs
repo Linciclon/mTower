@@ -27,8 +27,8 @@ GCC_SOURCE:=gcc-$(GCC_OFFICIAL_VER).tar.bz2
 TOOLCHAINPATH=$(TOPDIR)/toolchain/$(subst ",,$(CONFIG_GCC_FOLDER))
 
 #CROSSDEV =$(TOOLCHAINPATH)/bin/arm-none-eabi- # activate only if not compiling
-CROSSDEV = $(TOPDIR)/toolchain/gcc-arm-none-eabi-6-2017-q2-update/bin/arm-none-eabi-
-#CROSSDEV = arm-none-eabi-
+#CROSSDEV = $(TOPDIR)/toolchain/gcc-arm-none-eabi-6-2017-q2-update/bin/arm-none-eabi-
+CROSSDEV = arm-none-eabi-
 
 CC = $(CROSSDEV)gcc
 LD = $(CROSSDEV)ld

@@ -6,6 +6,6 @@ set $pc=_reset_handler
 set mem inaccessible-by-default off
 tui enable
 b ioctl
-b tee_ioctl_open_session
+b TEEC_InvokeCommand
 c
 

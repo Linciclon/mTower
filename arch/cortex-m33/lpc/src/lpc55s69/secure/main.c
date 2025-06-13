@@ -177,18 +177,38 @@ static void Boot_Init(uint32_t u32BootBase)
   uint32_t cmd;
   struct tee_ioctl_buf_data *buf_data;
 
-  __asm volatile (
-    "mov %[out_cmd], r1\n"
-    "mov %[out_buf], r2\n"
-    : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
-    :                                                  // no inputs
-    :                                                  // no clobbers
-  );
+
 
   while (1)
   {
-      ioctl(cmd, buf_data);
-      crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+    __asm volatile (
+      "mov %[out_cmd], r1\n"
+      "mov %[out_buf], r2\n"
+      : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
+      :                                                  // no inputs
+      :                                                  // no clobbers
+    );
+    ioctl(cmd, buf_data);
+    __asm volatile (
+      "mov %[out_cmd], r1\n"
+      "mov %[out_buf], r2\n"
+      : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
+      :                                                  // no inputs
+      :                                                  // no clobbers
+    );
+    crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+    // cmd = 0;
+    // __asm volatile (
+    //     "mov r0, %[cmd]       \n"  // r0 = cmd
+    //     "mov r1, %[buf]       \n"  // r1 = buf_data
+    //     "ldr r3, =%[addr]     \n"  // r3 = &BAO_HC_ADDR
+    //     "bx  r3               \n"  // salto indireto
+    //     :
+    //     : [cmd] "r" (cmd),
+    //       [buf] "r" (buf_data),
+    //       [addr] "i" (BAO_HC_ADDR)
+    //     : "r0", "r1", "r3"
+    // );
   }
   
 

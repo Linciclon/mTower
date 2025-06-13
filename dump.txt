@@ -32,25 +32,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   7 .comment      00000045  00000000  00000000  0001772e  2**0
                   CONTENTS, READONLY
-  8 .debug_line   0000f581  00000000  00000000  00017773  2**0
+  8 .debug_line   0000f586  00000000  00000000  00017773  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_info   000155e3  00000000  00000000  00026cf4  2**0
+  9 .debug_info   000155d2  00000000  00000000  00026cf9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_abbrev 00003d38  00000000  00000000  0003c2d7  2**0
+ 10 .debug_abbrev 00003d38  00000000  00000000  0003c2cb  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_aranges 000008c8  00000000  00000000  00040010  2**3
+ 11 .debug_aranges 000008c8  00000000  00000000  00040008  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_str    0001bc2d  00000000  00000000  000408d8  2**0
+ 12 .debug_str    0001bc2b  00000000  00000000  000408d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_loc    0000f75a  00000000  00000000  0005c505  2**0
+ 13 .debug_loc    0000f75a  00000000  00000000  0005c4fb  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_ranges 00000cb0  00000000  00000000  0006bc5f  2**0
+ 14 .debug_ranges 00000cb0  00000000  00000000  0006bc55  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_macro  00007beb  00000000  00000000  0006c90f  2**0
+ 15 .debug_macro  00007beb  00000000  00000000  0006c905  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_frame  00003054  00000000  00000000  000744fc  2**2
+ 16 .debug_frame  00003054  00000000  00000000  000744f0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line_str 000001a5  00000000  00000000  00077550  2**0
+ 17 .debug_line_str 000001a5  00000000  00000000  00077544  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 SYMBOL TABLE:
 00020000 l    d  .start	00000000 .start
@@ -363,7 +363,7 @@ SYMBOL TABLE:
 000216be g     F .text	0000000a mempool_free
 0002f518 g     F .text	00000000 .hidden __aeabi_drsub
 0002324c g     F .text	00000024 _sbrk_r
-20018bb0 g       .bss	00000000 _heap_base
+2001cbb0 g       .bss	00000000 _heap_base
 0002266a g     F .text	00000046 mbedtls_mpi_bitlen
 00030424 g     O .rodata	00000003 trace_ext_prefix
 000244a4 g     F .text	0000002c _read_r
@@ -400,7 +400,7 @@ SYMBOL TABLE:
 00021588 g     F .text	00000008 TEE_Malloc
 200109ec g     O .bss	00000001 __lock___malloc_recursive_mutex
 00021314 g     F .text	00000010 uart_getchar
-20018bb0 g       .bss	00000000 _stack_top
+2001cbb0 g       .bss	00000000 _stack_top
 2001087c g     O .bss	00000138 __sf
 00022410 g     F .text	0000000c tee_ta_push_current_session
 0002f524 g     F .text	00000276 .hidden __aeabi_dadd
@@ -689,7 +689,7 @@ copy_data:
 Disassembly of section .text:
 
 00021000 <_exception_vector>:
-   21000:	20018bb0 	.word	0x20018bb0
+   21000:	2001cbb0 	.word	0x2001cbb0
    21004:	00020001 	.word	0x00020001
    21008:	000211ad 	.word	0x000211ad
    2100c:	000211ad 	.word	0x000211ad
@@ -1332,7 +1332,7 @@ void arch_init(){}
  */
 int main(void)
 {
-   21400:	b580      	push	{r7, lr}
+   21400:	b508      	push	{r3, lr}
 
 //JOAO  SYS_Init();
 
@@ -1366,24 +1366,25 @@ int main(void)
    21426:	4611      	mov	r1, r2
    21428:	4610      	mov	r0, r2
    2142a:	4798      	blx	r3
-  __asm volatile (
-   2142c:	460e      	mov	r6, r1
-   2142e:	4617      	mov	r7, r2
-      crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
-   21430:	4d08      	ldr	r5, [pc, #32]	@ (21454 <main+0x54>)
-   21432:	2400      	movs	r4, #0
-      ioctl(cmd, buf_data);
-   21434:	4639      	mov	r1, r7
-   21436:	4630      	mov	r0, r6
-   21438:	f000 fcb4 	bl	21da4 <ioctl>
-      crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+    crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+   2142c:	4d09      	ldr	r5, [pc, #36]	@ (21454 <main+0x54>)
+   2142e:	2400      	movs	r4, #0
+    __asm volatile (
+   21430:	4608      	mov	r0, r1
+   21432:	4611      	mov	r1, r2
+    ioctl(cmd, buf_data);
+   21434:	f000 fcb6 	bl	21da4 <ioctl>
+    __asm volatile (
+   21438:	460b      	mov	r3, r1
+   2143a:	4612      	mov	r2, r2
+    crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
    2143c:	682b      	ldr	r3, [r5, #0]
    2143e:	4622      	mov	r2, r4
    21440:	4621      	mov	r1, r4
    21442:	4620      	mov	r0, r4
    21444:	4798      	blx	r3
   while (1)
-   21446:	e7f5      	b.n	21434 <main+0x34>
+   21446:	e7f3      	b.n	21430 <main+0x30>
    21448:	0002fe40 	.word	0x0002fe40
    2144c:	0002fe74 	.word	0x0002fe74
    21450:	0002fea4 	.word	0x0002fea4

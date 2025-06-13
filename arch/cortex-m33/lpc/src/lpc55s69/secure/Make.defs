@@ -21,6 +21,9 @@
 -include $(TOPDIR)/Make.defs
 -include $(TOPDIR)/.config
 
+CONFIG_APPS_HELLO_WORLD=
+CONFIG_APPS_BW=y
+
 HEAD_ASRC = 
 
 # Common m2351 files
