@@ -5,7 +5,7 @@ add-symbol-file /home/mjs/CROSSCON/TEEsinMCUs/freertos-over-bao/build/lpc55s69/f
 set $pc=_reset_handler
 set mem inaccessible-by-default off
 tui enable
-b ioctl
-b TEEC_InvokeCommand
+tb main
+b ta_bitcoin_cmd_issue_transactions
 c
 

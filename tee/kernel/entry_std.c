@@ -360,7 +360,7 @@ TEEC_Result tee_ioctl_open_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data)
   struct tee_ta_session *sess = NULL;
   struct tee_ta_param *param = NULL;
 
-  struct tee_ioctl_open_session_arg *arg;
+  struct tee_ioctl_open_session_arg *arg = NULL;
   //struct tee_ioctl_param *params;
   TEE_UUID uuid;
 

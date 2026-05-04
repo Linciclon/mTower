@@ -33,6 +33,9 @@
 #include <entry_std.h>
 
 #endif
+#include <plat.h>
+#include <irq.h>
+#include <uart.h>
 /* Pre-processor Definitions. */
 #define NORMAL  "\e[0m"
 #define BLACK   "\e[0;30m1"
@@ -142,6 +145,13 @@ void (*crosshyp_hypercall)(unsigned int, unsigned int, unsigned int) =
 
 
 
+void uart_rx_handler()
+{
+    uart_clear_rxirq();
+    printf("VM0: UART RX Handler\n");
+}
+
+
 /**
  * @brief         Boot_Init - Boot_Init function is used to jump to next boot
  *                code.
@@ -152,6 +162,12 @@ void (*crosshyp_hypercall)(unsigned int, unsigned int, unsigned int) =
  */
 static void Boot_Init(uint32_t u32BootBase)
 {
+
+  irq_set_handler(UART_IRQ_ID, uart_rx_handler);
+  uart_enable_rxirq();
+  irq_enable(UART_IRQ_ID);
+  irq_set_prio(UART_IRQ_ID, IRQ_MAX_PRIO);
+
   //NonSecure_funcptr fp;
 
   /* SCB_NS.VTOR points to the Non-secure vector table base address. */

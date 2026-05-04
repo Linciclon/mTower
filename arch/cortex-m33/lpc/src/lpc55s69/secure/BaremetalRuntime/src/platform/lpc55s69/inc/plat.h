@@ -9,7 +9,7 @@
 
 //#if GUEST0
 #define PLAT_CODE_MEM_BASE  0x20000
-#define PLAT_CODE_MEM_SIZE  0x16000
+#define PLAT_CODE_MEM_SIZE  0x35000
 
 #define PLAT_MEM_BASE       0x20010000
 #define PLAT_MEM_SIZE       0x10000
