@@ -136,6 +136,7 @@ extern TEE_Result tee_cryp_init(void);
 #define BAO_HC_OFF          0x41UL
 #define BAO_HC_ADDR         BAO_IMAGE_START+BAO_HC_OFF
 #define CROSSCON_HC_BLNS_ID       0x0
+#define CROSSCON_HC_BOOT        0xf
 #define VMS_IPC_BASE        0x20017000UL
 #define VMS_IPC_SIZE        0x1000
 
@@ -183,8 +184,8 @@ static void Boot_Init(uint32_t u32BootBase)
    will cause a state switch from Secure to Non-secure */
   //fp = cmse_nsfptr_create(fp);
 
-  //CROSSCON Hypervisor will be responsible for booting two VMs
-  crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
+  //CROSSCON Hypervisor will be responsible for booting all components;
+  crosshyp_hypercall(CROSSCON_HC_BOOT, 0, 0);
 
   //after hypercall usa values of R0, R1, R2 to interpret NS call
   //here will jump to NSC regions, i.e., the ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data) function
