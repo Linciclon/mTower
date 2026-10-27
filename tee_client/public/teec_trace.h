@@ -36,7 +36,7 @@ extern "C" {
 #include <stdint.h>
 #include <config.h>
 
-#ifndef PLATFORM_LPC55S69
+#if !defined(PLATFORM_LPC55S69) && !defined(PLATFORM_RZT2M)
 #include "printf.h"
 #endif
 #ifndef BINARY_PREFIX

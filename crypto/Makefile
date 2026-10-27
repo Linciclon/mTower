@@ -65,7 +65,9 @@ SRCS += libtomcrypt/src/misc/crypt/crypt_register_prng.c
 
 
 ifeq ($(WORLD), secure)
+ifneq ($(CONFIG_ARCH_CORTEX_R52),y)
 CFLAGS += -mcmse
+endif
 endif
 
 SRCS += libtomcrypt/src/tee_ltc_provider.c 

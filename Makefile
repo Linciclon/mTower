@@ -108,6 +108,13 @@ Make.defs:
 	@cp configs/$(PLATFORM)/Make.defs Make.defs
 
 create_context: Make.defs .config
+	@test -n "$(PLATFORM)" || { echo "PLATFORM is required"; exit 1; }
+	@test -f "configs/$(PLATFORM)/defconfig" -a \
+		-f "configs/$(PLATFORM)/Make.defs" || { \
+		echo "Unknown platform: $(PLATFORM)"; exit 1; \
+	}
+	@cp "configs/$(PLATFORM)/defconfig" .config
+	@cp "configs/$(PLATFORM)/Make.defs" Make.defs
 
 # toolchain
 #
@@ -125,7 +132,14 @@ gcc-unpacked: $(TOPDIR)/toolchain/$(GCC_SOURCE)
 		tar xvf $(TOPDIR)/toolchain/$(GCC_SOURCE) -C $(TOPDIR)/toolchain ; \
 	fi
 
+ifeq ($(CONFIG_ARCH_CORTEX_R52),y)
+toolchain: check_context Make.defs .config
+	@$(CC) -mcpu=cortex-r52 -x c -c /dev/null -o /tmp/mtower-r52-toolchain-check.o
+	@rm -f /tmp/mtower-r52-toolchain-check.o
+	@$(CC) --version | head -n 1
+else
 toolchain: check_context Make.defs .config $(TOPDIR)/toolchain/$(GCC_SOURCE) gcc-unpacked
+endif
 
 # context
 #

@@ -1,0 +1,14 @@
+
+ARCH_SUB?=aarch64
+arch_sub_dir:=$(cur_dir)/$(ARCH_SUB)
+include $(arch_sub_dir)/arch_sub.mk
+SRC_DIRS+=$(arch_sub_dir)
+INC_DIRS+=$(arch_sub_dir)/inc
+include $(arch_sub_dir)/sources.mk
+
+ARCH_GENERIC_FLAGS +=-DGIC_VERSION=$(GIC_VERSION) \
+	$(ARCH_SUB_GENERIC_FLAGS)
+ARCH_ASFLAGS = 
+ARCH_CFLAGS = -mgeneral-regs-only
+ARCH_CPPFLAGS =	
+ARCH_LDFLAGS = 

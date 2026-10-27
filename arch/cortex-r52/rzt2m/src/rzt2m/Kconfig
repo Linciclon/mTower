@@ -1,0 +1,4 @@
+if PLATFORM_RZT2M
+comment "RZT2M Peripheral Configuration Options"
+
+endif # PLATFORM_RZT2M

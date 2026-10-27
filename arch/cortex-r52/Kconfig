@@ -1,0 +1,24 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the docs folder of mTower repository.
+#
+
+choice
+	prompt "MCU Family"
+	default ARCH_FAMILY_RZT2M
+
+config ARCH_FAMILY_RZT2M
+	bool "RZT2M"
+	---help---
+		The RZT2M architecture
+
+endchoice
+
+config ARCH_FAMILY
+	string
+	default "rzt2m"            if ARCH_FAMILY_RZT2M
+
+if ARCH_FAMILY_RZT2M
+comment "RZT2M Configuration Options"
+source arch/cortex-r52/rzt2m/Kconfig
+endif

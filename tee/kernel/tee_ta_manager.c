@@ -58,7 +58,7 @@
 //#include "tee_client_api.h"
 //#include "tee.h"
 
-#ifndef PLATFORM_LPC55S69
+#if !defined(PLATFORM_LPC55S69) && !defined(PLATFORM_RZT2M)
 #include "printf.h"
 #endif
 struct tee_ta_session *current_session;

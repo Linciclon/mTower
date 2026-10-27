@@ -32,7 +32,7 @@
 #include <assert.h>
 #include <bignum2.h>
 
-#ifndef PLATFORM_LPC55S69
+#if !defined(PLATFORM_LPC55S69) && !defined(PLATFORM_RZT2M)
 #include "printf.h"
 #endif
 #define MBEDTLS_MPI_MAX_LIMBS                             10000

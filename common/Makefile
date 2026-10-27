@@ -25,7 +25,9 @@ CFLAGS += -I.
 CFLAGS += -I$(TOPDIR)/include/mtower
 
 ifeq ($(WORLD), secure)
+ifneq ($(CONFIG_ARCH_CORTEX_R52),y)
 CFLAGS += -mcmse
+endif
 endif
 
 SRCS  = heap_4.c 

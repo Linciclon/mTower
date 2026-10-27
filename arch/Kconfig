@@ -17,6 +17,11 @@ config ARCH_CORTEX_M33
 	---help---
 		The ARM architecture
 
+config ARCH_CORTEX_R52
+	bool "cortex-r52"
+	---help---
+		The ARM architecture
+
 config ARCH_RISCV_32
 	bool "riscv32"
 	---help---
@@ -28,6 +33,7 @@ config ARCH
 	string
 	default "cortex-m23"    if ARCH_CORTEX_M23
 	default "cortex-m33"    if ARCH_CORTEX_M33
+	default "cortex-r52"    if ARCH_CORTEX_R52
 	default "riscv32"    if ARCH_RISCV_32
 
 if ARCH_CORTEX_M23
@@ -36,6 +42,10 @@ endif
 
 if ARCH_CORTEX_M33
 source arch/cortex-m33/Kconfig
+endif
+
+if ARCH_CORTEX_R52
+source arch/cortex-r52/Kconfig
 endif
 
 if ARCH_RISCV_32

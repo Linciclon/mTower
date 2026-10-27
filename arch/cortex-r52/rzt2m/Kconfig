@@ -1,0 +1,25 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the docs folder of mTower repository.
+#
+
+choice
+	prompt "rzt2m platform selection"
+	default PLATFORM_RZT2M
+
+config PLATFORM_RZT2M
+	bool "rzt2m board"
+	---help---
+		RZT2M board.
+
+endchoice
+
+config PLATFORM
+	string
+	default "rzt2m"  if PLATFORM_RZT2M
+
+if PLATFORM_RZT2M
+#comment "rzt2m Peripheral Configuration Options"
+source arch/cortex-r52/rzt2m/src/rzt2m/Kconfig
+endif # PLATFORM_RZT2M
+
