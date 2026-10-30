@@ -39,6 +39,9 @@
 //#include <tee_client_api_extensions.h>
 #include <tee_client_api.h>
 #include "tee.h"
+#ifdef PLATFORM_RZT2M
+#include "crosshyp.h"
+#endif
 //#include <teec_trace.h>
 //#include <unistd.h>
 
@@ -52,7 +55,157 @@
 //
 //#include "teec_benchmark.h"
 
+#ifdef PLATFORM_RZT2M
+#ifndef CROSSCON_TEE_SHMEM_BASE
+#define CROSSCON_TEE_SHMEM_BASE ((uintptr_t)0x10080000UL)
+#endif
+#ifndef CROSSCON_TEE_SHMEM_SIZE
+#define CROSSCON_TEE_SHMEM_SIZE ((size_t)0x1000U)
+#endif
+
+struct rzt2m_memref_copy {
+	void *client_buffer;
+	void *shared_buffer;
+	uint32_t capacity;
+	uint32_t type;
+};
+
+static uintptr_t align_up_uintptr(uintptr_t value, uintptr_t alignment)
+{
+	return (value + alignment - 1U) & ~(alignment - 1U);
+}
+
+static int32_t tee_transport_ioctl(uint32_t cmd,
+				   struct tee_ioctl_buf_data *buf_data)
+{
+	struct tee_ioctl_buf_data *shared_data;
+	struct tee_ioctl_param *client_params = NULL;
+	struct tee_ioctl_param *shared_params = NULL;
+	struct rzt2m_memref_copy copies[TEEC_CONFIG_PAYLOAD_REF_COUNT] = { 0 };
+	uint8_t *shared_payload;
+	uintptr_t cursor;
+	uintptr_t shared_end = CROSSCON_TEE_SHMEM_BASE +
+				       CROSSCON_TEE_SHMEM_SIZE;
+	size_t params_offset = 0;
+	uint32_t num_params = 0;
+	uint32_t n;
+	int32_t rc;
+
+	if (!buf_data || !buf_data->buf_ptr || !buf_data->buf_len)
+		return -1;
+
+	shared_data = (struct tee_ioctl_buf_data *)CROSSCON_TEE_SHMEM_BASE;
+	cursor = align_up_uintptr(CROSSCON_TEE_SHMEM_BASE +
+				  sizeof(*shared_data), 8U);
+	if (buf_data->buf_len > shared_end - cursor)
+		return -1;
+
+	shared_payload = (uint8_t *)cursor;
+	memcpy(shared_payload, (void *)(uintptr_t)buf_data->buf_ptr,
+	       buf_data->buf_len);
+	shared_data->buf_ptr = (uint32_t)(uintptr_t)shared_payload;
+	shared_data->buf_len = buf_data->buf_len;
+	cursor = align_up_uintptr(cursor + buf_data->buf_len, 8U);
+
+	if (cmd == TEE_IOC_OPEN_SESSION) {
+		struct tee_ioctl_open_session_arg *client_arg;
+		struct tee_ioctl_open_session_arg *shared_arg;
+
+		if (buf_data->buf_len < sizeof(*client_arg))
+			return -1;
+		client_arg = (struct tee_ioctl_open_session_arg *)
+				(uintptr_t)buf_data->buf_ptr;
+		shared_arg = (struct tee_ioctl_open_session_arg *)shared_payload;
+		num_params = client_arg->num_params;
+		params_offset = sizeof(*client_arg);
+		client_params = (struct tee_ioctl_param *)(client_arg + 1);
+		shared_params = (struct tee_ioctl_param *)(shared_arg + 1);
+	} else if (cmd == TEE_IOC_INVOKE) {
+		struct tee_ioctl_invoke_arg *client_arg;
+		struct tee_ioctl_invoke_arg *shared_arg;
+
+		if (buf_data->buf_len < sizeof(*client_arg))
+			return -1;
+		client_arg = (struct tee_ioctl_invoke_arg *)
+				(uintptr_t)buf_data->buf_ptr;
+		shared_arg = (struct tee_ioctl_invoke_arg *)shared_payload;
+		num_params = client_arg->num_params;
+		params_offset = sizeof(*client_arg);
+		client_params = (struct tee_ioctl_param *)(client_arg + 1);
+		shared_params = (struct tee_ioctl_param *)(shared_arg + 1);
+	}
+
+	if (num_params > TEEC_CONFIG_PAYLOAD_REF_COUNT ||
+	    (num_params && (params_offset > buf_data->buf_len ||
+			   num_params * sizeof(*client_params) >
+			   buf_data->buf_len - params_offset)))
+		return -1;
+
+	for (n = 0; n < num_params; n++) {
+		uint32_t type = client_params[n].attr &
+				TEE_IOCTL_PARAM_ATTR_TYPE_MASK;
+		uint32_t size;
+
+		if (type != TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT &&
+		    type != TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT &&
+		    type != TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INOUT)
+			continue;
+
+		size = client_params[n].u.memref.size;
+		if (size > shared_end - cursor ||
+		    (size && !client_params[n].u.memref.shm_offs))
+			return -1;
+
+		copies[n].client_buffer = (void *)(uintptr_t)
+			client_params[n].u.memref.shm_offs;
+		copies[n].shared_buffer = (void *)cursor;
+		copies[n].capacity = size;
+		copies[n].type = type;
+
+		if (size && type != TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT)
+			memcpy(copies[n].shared_buffer, copies[n].client_buffer, size);
+		shared_params[n].u.memref.shm_offs = (uint32_t)cursor;
+		cursor = align_up_uintptr(cursor + size, 8U);
+	}
+
+	/* r0 = service ID, r1 = ioctl command, r2 = shared descriptor. */
+	rc = (int32_t)crosshyp_hypercall(CROSSCON_HC_SG_ID,
+					 (uintptr_t)cmd,
+					 (uintptr_t)shared_data);
+
+	for (n = 0; n < num_params; n++) {
+		uint32_t returned_size;
+
+		if (!copies[n].shared_buffer)
+			continue;
+		returned_size = shared_params[n].u.memref.size;
+		if (returned_size > copies[n].capacity)
+			returned_size = copies[n].capacity;
+		if (returned_size &&
+		    copies[n].type != TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT)
+			memcpy(copies[n].client_buffer, copies[n].shared_buffer,
+			       returned_size);
+	}
+
+	memcpy((void *)(uintptr_t)buf_data->buf_ptr, shared_payload,
+	       buf_data->buf_len);
+	for (n = 0; n < num_params; n++) {
+		if (copies[n].shared_buffer)
+			client_params[n].u.memref.shm_offs =
+				(uint32_t)(uintptr_t)copies[n].client_buffer;
+	}
+
+	return rc;
+}
+#else
 extern int32_t ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data);
+
+static int32_t tee_transport_ioctl(uint32_t cmd,
+				   struct tee_ioctl_buf_data *buf_data)
+{
+	return ioctl(cmd, buf_data);
+}
+#endif
 
 /* How many device sequence numbers will be tried before giving up */
 #define TEEC_MAX_DEV_SEQ	1
@@ -529,7 +682,7 @@ TEEC_Result TEEC_OpenSession(TEEC_Context *ctx, TEEC_Session *session,
 		goto out_free_temp_refs;
 	}
 
-	rc = ioctl(/*ctx->fd,*/ TEE_IOC_OPEN_SESSION, &buf_data);
+	rc = tee_transport_ioctl(TEE_IOC_OPEN_SESSION, &buf_data);
 	if (rc) {
 //		EMSG("TEE_IOC_OPEN_SESSION failed");
 		eorig = TEEC_ORIGIN_COMMS;
@@ -565,7 +718,7 @@ void TEEC_CloseSession(TEEC_Session *session)
 
 	arg.session = session->session_id;
 
-	if (ioctl(/*session->ctx->fd,*/ TEE_IOC_CLOSE_SESSION, &buf_data))
+	if (tee_transport_ioctl(TEE_IOC_CLOSE_SESSION, &buf_data))
 		printf("Failed to close session 0x%x\n", session->session_id);
 	else {
 		printf("Session successfully closed 0x%x\n", session->session_id);
@@ -618,7 +771,7 @@ TEEC_Result TEEC_InvokeCommand(TEEC_Session *session, uint32_t cmd_id,
 		goto out_free_temp_refs;
 	}
 
-	rc = ioctl(/*session->ctx->fd,*/ TEE_IOC_INVOKE, &buf_data);
+	rc = tee_transport_ioctl(TEE_IOC_INVOKE, &buf_data);
 	if (rc) {
 //	  EMSG("TEE_IOC_INVOKE failed");
 		eorig = TEEC_ORIGIN_COMMS;

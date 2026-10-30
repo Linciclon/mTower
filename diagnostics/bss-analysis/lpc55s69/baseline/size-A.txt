@@ -1,0 +1,24 @@
+diagnostics/bss-analysis/lpc55s69/baseline/bl32.elf  :
+section                          size        addr
+.start                            136       65536
+.text                          109344       69632
+.rodata                        101208      178976
+.ARM.exidx                          8      280184
+.ARM.exidx.text.__udivmoddi4        0      280192
+.data                            2012   536936448
+.bss                            18424   536938464
+.ARM.attributes                    50           0
+.comment                           69           0
+.debug_line                    113317           0
+.debug_info                    171499           0
+.debug_abbrev                   26570           0
+.debug_aranges                   4296           0
+.debug_str                     127048           0
+.debug_loc                     149038           0
+.debug_ranges                    6104           0
+.debug_macro                    42072           0
+.debug_frame                    19624           0
+.debug_line_str                   457           0
+Total                          891276
+
+

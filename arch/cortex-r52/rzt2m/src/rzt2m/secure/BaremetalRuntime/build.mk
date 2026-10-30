@@ -22,6 +22,7 @@ objdump=$(CROSS_COMPILE)objdump
 
 OPT_LEVEL = 2
 DEBUG_LEVEL = 3
+SINGLE_CORE = y
 
 debug_flags:= -g$(DEBUG_LEVEL) $(arch_debug_flags) $(platform_debug_flags)
 GENERIC_FLAGS = $(ARCH_GENERIC_FLAGS) -O$(OPT_LEVEL) $(debug_flags) -static

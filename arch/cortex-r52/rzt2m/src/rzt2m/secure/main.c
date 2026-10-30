@@ -25,14 +25,14 @@
 //#include "M2351.h"
 //#include "partition_M2351.h"
 #include "config.h"
+#include "crosshyp.h"
 #include "version.h"
 #include "tee_api_types.h"
+#include "tee.h"
 #ifndef PLATFORM_RZT2M
 #include "printf.h"
-
-#include <entry_std.h>
-
 #endif
+#include <kernel/entry_std.h>
 #include <plat.h>
 #include <irq.h>
 #include <uart.h>
@@ -132,17 +132,8 @@ extern TEE_Result tee_cryp_init(void);
 
 // }
 
-#define BAO_IMAGE_START     0x10000000UL
-#define BAO_HC_OFF          0x41UL
-#define BAO_HC_ADDR         BAO_IMAGE_START+BAO_HC_OFF
-#define CROSSCON_HC_BLNS_ID       0x0
-#define CROSSCON_HC_BOOT        0xf
 #define VMS_IPC_BASE        0x20017000UL
 #define VMS_IPC_SIZE        0x1000
-
-
-void (*crosshyp_hypercall)(unsigned int, unsigned int, unsigned int) =
-    (void (*)(unsigned int, unsigned int, unsigned int))BAO_HC_ADDR;
 
 
 
@@ -163,6 +154,11 @@ void uart_rx_handler()
  */
 static void Boot_Init(uint32_t u32BootBase)
 {
+	struct crosshyp_hypercall_result request;
+	uint32_t cmd;
+	struct tee_ioctl_buf_data *buf_data;
+
+	(void)u32BootBase;
 
   irq_set_handler(UART_IRQ_ID, uart_rx_handler);
   uart_enable_rxirq();
@@ -185,48 +181,18 @@ static void Boot_Init(uint32_t u32BootBase)
   //fp = cmse_nsfptr_create(fp);
 
   //CROSSCON Hypervisor will be responsible for booting all components;
-  crosshyp_hypercall(CROSSCON_HC_BOOT, 0, 0);
+	/* The boot call returns the first client-VM request in r1/r2. */
+	request = crosshyp_hypercall_with_result(CROSSCON_HC_BOOT, 0, 0);
 
-  //after hypercall usa values of R0, R1, R2 to interpret NS call
-  //here will jump to NSC regions, i.e., the ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data) function
-  //__asm__ volatile("b my_fixed_section" ::: "memory");
+	while (1) {
+		cmd = (uint32_t)request.r1;
+		buf_data = (struct tee_ioctl_buf_data *)request.r2;
+		(void)ioctl(cmd, buf_data);
 
-  uint32_t cmd;
-  struct tee_ioctl_buf_data *buf_data;
-
-
-
-  while (1)
-  {
-    __asm volatile (
-      "mov %[out_cmd], r1\n"
-      "mov %[out_buf], r2\n"
-      : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
-      :                                                  // no inputs
-      :                                                  // no clobbers
-    );
-    ioctl(cmd, buf_data);
-    __asm volatile (
-      "mov %[out_cmd], r1\n"
-      "mov %[out_buf], r2\n"
-      : [out_cmd] "=r" (cmd), [out_buf] "=r" (buf_data)  // outputs
-      :                                                  // no inputs
-      :                                                  // no clobbers
-    );
-    crosshyp_hypercall(CROSSCON_HC_BLNS_ID, 0, 0);
-    // cmd = 0;
-    // __asm volatile (
-    //     "mov r0, %[cmd]       \n"  // r0 = cmd
-    //     "mov r1, %[buf]       \n"  // r1 = buf_data
-    //     "ldr r3, =%[addr]     \n"  // r3 = &BAO_HC_ADDR
-    //     "bx  r3               \n"  // salto indireto
-    //     :
-    //     : [cmd] "r" (cmd),
-    //       [buf] "r" (buf_data),
-    //       [addr] "i" (BAO_HC_ADDR)
-    //     : "r0", "r1", "r3"
-    // );
-  }
+		/* Return to the hypervisor and receive the following request. */
+		request = crosshyp_hypercall_with_result(CROSSCON_HC_BLNS_ID,
+							    0, 0);
+	}
   
 
 

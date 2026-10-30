@@ -119,6 +119,9 @@ endif
 CFLAGS += -DDEBUG_PORT=$(subst ",,$(CONFIG_SECURE_DEBUG_UART)) 
 
 OBJDIR = $(TOPDIR)/build/secure$(subst $(TOPDIR),,$(shell pwd))
+ELF_FILE = $(OBJDIR)/bl32.elf
+MAP_FILE = $(OBJDIR)/bl32.map
+DUMP_FILE = $(OBJDIR)/dump.txt
 
 MTOWER_S = $(TOPDIR)/mtower_s$(EXEEXT)
 
@@ -161,7 +164,7 @@ mtower_s$(EXEEXT): $(OBJS_S) $(gen_ld_file)
 	$(Q) $(MAKE) -C $(TOPDIR)/crypto/ TOPDIR="$(TOPDIR)" WORLD=secure libcrypt_s.a
 	@echo "CC: mTower_s$(EXEEXT)"
 #	$(Q) $(CC) $(CFLAGS) -mcmse -Wl,--defsym,START_ADDRESS_BL32=$(CONFIG_START_ADDRESS_BL32) -Tsecure.ld $(OBJS_S) $(LIBPATHS) $(LIBS) -o $(OBJDIR)/bl32.elf //Comentei isto como backup de como estava inicialmente com as flags de quando nao estava sobre uma vm
-	$(Q) $(CC) $(CFLAGS) -Wl,--defsym,START_ADDRESS_BL32=$(CONFIG_START_ADDRESS_BL32) $(LDFLAGS) -T$(gen_ld_file) $(OBJS_S) $(LIBPATHS) $(LIBS) -o $(OBJDIR)/bl32.elf
+	$(Q) $(CC) $(CFLAGS) -Wl,--defsym,START_ADDRESS_BL32=$(CONFIG_START_ADDRESS_BL32) -Wl,-Map=$(MAP_FILE),--cref $(LDFLAGS) -T$(gen_ld_file) $(OBJS_S) $(LIBPATHS) $(LIBS) -o $(ELF_FILE)
 	@echo "PASS"
 	$(Q) $(CC) $(CFLAGS) -Wl,--defsym,START_ADDRESS_BL32=$(CONFIG_START_ADDRESS_BL32) $(LDFLAGS) -T$(gen_ld_file) $(OBJS_S) $(LIBPATHS) $(LIBS)
 	@echo "Esta quase"
@@ -169,7 +172,9 @@ mtower_s$(EXEEXT): $(OBJS_S) $(gen_ld_file)
 #	$(Q) $(CC) $(CFLAGS) -Wl,--unresolved-symbols=ignore-all -Wl,--section-start=.gnu.sgstubs=0x3f000 -Wl,--out-implib=$(OBJDIR)/libnsc$(LIBEXT) -Wl,--cmse-implib $(OBJS_S) $(LIBPATHS) $(LIBS)
 #	$(Q) $(CC) $(CFLAGS) -Wl,--section-start=.text=$(CONFIG_START_ADDRESS_BL32) -Wl,--unresolved-symbols=ignore-all -Wl,--out-implib=$(OBJDIR)/libnsc$(LIBEXT) -Wl,--cmse-implib -Tsecure.ld $(OBJS_S) $(LIBPATHS) $(LIBS)
 	$(Q) rm -f a.out
-	$(Q) $(OBJCOPY) -S -O binary $(OBJDIR)/bl32.elf $(OBJDIR)/bl32.bin
+	$(Q) $(OBJCOPY) -S -O binary $(ELF_FILE) $(OBJDIR)/bl32.bin
+	$(Q) $(SIZE) -A $(ELF_FILE) > $(DUMP_FILE)
+	$(Q) $(OBJDUMP) -x -S $(ELF_FILE) >> $(DUMP_FILE)
 	$(Q) cp -f $(OBJDIR)/bl32.bin $(TOPDIR)/mtower_s.bin
 	@echo "Vou copiar agr para o Build DIR"
 #	$(Q) cp -f $(OBJDIR)/libnsc$(LIBEXT) $(TOPDIR)/lib/

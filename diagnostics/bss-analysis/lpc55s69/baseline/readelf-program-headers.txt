@@ -1,0 +1,16 @@
+
+Elf file type is EXEC (Executable file)
+Entry point 0x10001
+There are 3 program headers, starting at offset 52
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  EXIDX          0x035678 0x00044678 0x00044678 0x00008 0x00008 R   0x4
+  LOAD           0x001000 0x00010000 0x00010000 0x34680 0x34680 R E 0x1000
+  LOAD           0x036000 0x20010000 0x00044680 0x007dc 0x04fd8 RW  0x1000
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .ARM.exidx 
+   01     .start .text .rodata .ARM.exidx 
+   02     .data .bss 

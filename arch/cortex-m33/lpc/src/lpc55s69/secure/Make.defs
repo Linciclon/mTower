@@ -21,8 +21,8 @@
 -include $(TOPDIR)/Make.defs
 -include $(TOPDIR)/.config
 
-CONFIG_APPS_HELLO_WORLD=
-CONFIG_APPS_BW=y
+CONFIG_APPS_HELLO_WORLD=y
+CONFIG_APPS_BW=n
 
 HEAD_ASRC = 
 

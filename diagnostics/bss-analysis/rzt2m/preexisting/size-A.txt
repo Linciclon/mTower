@@ -1,0 +1,25 @@
+diagnostics/bss-analysis/rzt2m/preexisting/bl32.elf  :
+section              size        addr
+.start                380   269484032
+.text              137264   269484416
+.rodata            101192   269621680
+.ARM.exidx              8   269722872
+.eh_frame              44   269722880
+.data                2020   269722928
+.bss                22176   269724952
+.stack              65544   269747128
+.ARM.attributes        53           0
+.comment               69           0
+.debug_line        123508           0
+.debug_line_str       672           0
+.debug_info        176069           0
+.debug_abbrev       28413           0
+.debug_aranges       4824           0
+.debug_str         189911           0
+.debug_loclists    103459           0
+.debug_rnglists      4875           0
+.debug_macro        47309           0
+.debug_frame        20420           0
+Total             1028210
+
+

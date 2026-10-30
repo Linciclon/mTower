@@ -1,8 +1,14 @@
 #ifndef PLAT_H
 #define PLAT_H
 
+//com hello world
 #define PLAT_MEM_BASE  0x10100000
-#define PLAT_MEM_SIZE  0x80000
+#define PLAT_MEM_SIZE  0x30000
+
+// com bitcoin wallet
+//#define PLAT_MEM_BASE  0x10100000
+//#define PLAT_MEM_SIZE  0x50000
+
 #ifdef SINGLE_CORE
 #define PLAT_CPU_COUNT 1
 #else

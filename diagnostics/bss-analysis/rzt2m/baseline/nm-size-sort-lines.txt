@@ -1,0 +1,665 @@
+1013c1f4 00000001 B __lock___malloc_recursive_mutex
+1013c1f8 00000001 B __lock___sfp_recursive_mutex
+1013bd1c 00000001 b init_done	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:96
+10121868 00000002 W __aeabi_idiv0
+10121868 00000002 W __aeabi_ldiv0
+101105a0 00000002 T __retarget_lock_acquire_recursive
+1011059c 00000002 T __retarget_lock_close_recursive
+10110598 00000002 T __retarget_lock_init_recursive
+101105a4 00000002 T __retarget_lock_release_recursive
+10134f08 00000003 R trace_ext_prefix	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/trace.c:44
+1013bd28 00000004 B TIMER_FREQ	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/timer.c:3
+1013c1ec 00000004 B __malloc_max_sbrked_mem
+1013c1e8 00000004 B __malloc_max_total_mem
+1013a580 00000004 D __malloc_sbrk_base
+1013c1f0 00000004 B __malloc_top_pad
+1013a584 00000004 D __malloc_trim_threshold
+1013c1bc 00000004 B __stdio_exit_handler
+10116c24 00000004 T _getpid_r
+1013a990 00000004 D _impure_ptr
+1013a544 00000004 D crosshyp_hypercall	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/main.c:144
+1013c078 00000004 B current_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:64
+1013c1fc 00000004 B errno
+1013a540 00000004 d gicd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:26
+1013bd30 00000004 B gicd_lock	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:31
+1013a53c 00000004 d gicr	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:28
+1013bd2c 00000004 B gicr_lock	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:32
+1013a534 00000004 d heap_end.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:68
+1013bd18 00000004 b init_lock	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:97
+1013c080 00000004 B mbedtls_mpi_mempool	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:84
+10135170 00000004 r memset_func	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:86
+1013c214 00000004 b pxEnd
+10119f14 00000004 T rijndael_done
+1013c07c 00000004 b seed	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/trezor-crypto/rand.c:40
+1010040c 00000004 T set_pmr	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/uart_api.c:11
+1013c074 00000004 B tee_svc_uref_base	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc.c:49
+1013a550 00000004 D trace_level	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/trace.c:43
+1013a538 00000004 d uart	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:5
+1013c200 00000004 b xBlockAllocatedBit
+1013c210 00000004 b xFreeBytesRemaining
+1013c20c 00000004 b xMinimumEverFreeBytesRemaining
+1013c208 00000004 b xNumberOfSuccessfulAllocations
+1013c204 00000004 b xNumberOfSuccessfulFrees
+10134f00 00000005 r lvl_strs.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/trace.c:73
+10129930 00000007 r __FUNCTION__.0
+101219a8 00000008 t ___getpid_from_thumb
+1012baac 00000008 r __func__.0
+1012baec 00000008 r __func__.4
+1010f808 00000008 T __sclose
+10100280 00000008 T _close	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:48
+101002d8 00000008 T _getpid	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:82
+101167bc 00000008 T _localeconv_r
+101219b0 00000008 r g_prcr_masks	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:62
+1013bd20 00000008 b g_protect_counters	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:103
+10100404 00000008 T get_pmr	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/uart_api.c:4
+1013a554 00000008 D global_pobj_list	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_storage.c:50
+1013a548 00000008 D oprtn_hndl_head	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:73
+10117964 00000008 t prng_crypto_add_entropy
+10117974 00000008 t prng_crypto_done
+1011797c 00000008 t prng_crypto_export
+10117984 00000008 t prng_crypto_import
+1011796c 00000008 t prng_crypto_ready
+1011795c 00000008 t prng_crypto_start
+1011798c 00000008 t prng_crypto_test
+10119f0c 00000008 T rijndael_test
+1011aa88 00000008 T sha1_test
+1011c5c8 00000008 T sha256_test
+1011d614 00000008 T sha512_test
+10100a24 00000008 T smc_call	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/psci.c:27
+1013a56c 00000008 D tee_ctxes	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:67
+1013a564 00000008 D tee_open_sessions	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/entry_std.c:127
+1013a55c 00000008 d tee_pobjs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_pobj.c:35
+1013c218 00000008 b xStart
+10134ee0 0000000a r __FUNCTION__.0
+1012bab4 0000000b r __func__.1
+10108618 0000000c T TEE_Free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api.c:328
+1010860c 0000000c T TEE_Malloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api.c:314
+10108600 0000000c T TEE_MemFill	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api.c:246
+101085f4 0000000c T TEE_MemMove	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api.c:236
+1012998c 0000000c r __FUNCTION__.5
+1010fe58 0000000c T __errno
+101102f4 0000000c T __malloc_lock
+10110300 0000000c T __malloc_unlock
+1010f6d4 0000000c T __sfp_lock_acquire
+1010f6e0 0000000c T __sfp_lock_release
+1013a574 0000000c D __sglue
+101002cc 0000000c T _exit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:74
+10118f74 0000000c t count_bits
+10118f68 0000000c t count_lsb_bits
+10118108 0000000c T crypto_acipher_alloc_ecc_keypair
+10100f70 0000000c T gic_set_route	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:522
+10109074 0000000c t op_attr_value_clear	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:819
+101351d4 0000000c r p05.0
+1010b5e8 0000000c T tee_cryp_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_cryp_utl.c:357
+10135060 0000000c r tee_cryp_obj_secret_value_attrs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:109
+101087a8 0000000c T tee_user_mem_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_user_mem.c:90
+10118af8 0000000c t unsigned_size
+101167ac 0000000e T __locale_mb_cur_max
+10115924 0000000e T abort
+101350bc 0000000f r __func__.0
+10134f1c 0000000f r __func__.1
+1012baf4 0000000f r __func__.2
+10129a08 00000010 r __FUNCTION__.11
+101299ac 00000010 r __FUNCTION__.7
+10134f0c 00000010 r __func__.0
+10100288 00000010 T _fstat	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:53
+10135184 00000010 r blanks.1
+101351a4 00000010 r blanks.1
+101351c4 00000010 r blanks.1
+10135440 00000010 r ecc_keypair_ops
+1010f820 00000010 T free
+10118bfc 00000010 t init_size
+10100a6c 00000010 T irq_set_prio	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/irq.c:18
+1010f810 00000010 T malloc
+10109028 00000010 T mempool_alloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/include/mempool.c:144
+10109038 00000010 T mempool_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/include/mempool.c:185
+10109380 00000010 t op_attr_bignum_clear	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:746
+10109064 00000010 t op_attr_value_from_obj	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:810
+1010bb94 00000010 t pseudo_ta_destroy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:254
+1010f3d8 00000010 T puts
+101009a4 00000010 T rzt2m_uart_enable_rxirq	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:493
+1010b5f4 00000010 T tee_svc_copy_from_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc.c:929
+1010b604 00000010 T tee_svc_copy_to_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc.c:949
+1010c55c 00000010 T tee_ta_pop_current_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:750
+1010c54c 00000010 T tee_ta_push_current_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:739
+1010a148 00000010 T utee_cryp_obj_close	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1285
+10135174 00000010 r zeroes.0
+10135194 00000010 r zeroes.0
+101351b4 00000010 r zeroes.0
+10129938 00000011 r __FUNCTION__.1
+1012ba98 00000011 r __FUNCTION__.1
+10129998 00000011 r __FUNCTION__.6
+10116d1c 00000012 T _Bfree
+1011030c 00000012 T calloc
+10110784 00000012 T putchar
+1012ba84 00000013 r __FUNCTION__.0
+10134eec 00000013 r __FUNCTION__.0
+1013512c 00000013 r __func__.0
+1012bac0 00000013 r __func__.2
+1012bb1c 00000013 r __func__.4
+1012bb30 00000013 r __func__.5
+10108670 00000014 T TEE_Panic	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_panic.c:22
+10135100 00000014 r __FUNCTION__.0
+10129a6c 00000014 r __FUNCTION__.1
+1012994c 00000014 r __FUNCTION__.2
+10129960 00000014 r __FUNCTION__.3
+101353d4 00000014 r __func__.1
+10118b04 00000014 t get_digit_count
+1013c060 00000014 b hashcode.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ta_ripemd160.c:282
+101001ac 00000014 T irq_set_handler	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/irq.c:6
+1010cf48 00000014 T mbedtls_mpi_size	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:455
+10104d1c 00000014 T memzero	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/memzero.c:4
+10104b20 00000014 T scalar_multiply	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:475
+10118ca8 00000014 t sqr
+1010b6c8 00000014 T tee_obj_alloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:101
+10135114 00000015 r __FUNCTION__.1
+10129974 00000015 r __FUNCTION__.4
+10135140 00000015 r __func__.1
+10135400 00000015 r __func__.6
+101299bc 00000016 r __FUNCTION__.8
+1013506c 00000016 r __func__.0
+1012bb04 00000016 r __func__.3
+101299f0 00000017 r __FUNCTION__.10
+101353e8 00000017 r __func__.4
+1012bad4 00000018 r __func__.3
+10135158 00000018 r __func__.4
+10100298 00000018 T _isatty	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:59
+101002e0 00000018 T _kill	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:87
+10100268 00000018 T _lseek	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:42
+10115970 00000018 T _wcsrtombs_r
+1010ca00 00000018 T crypto_bignum_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:91
+101093ac 00000018 t op_attr_bignum_from_obj	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:735
+10103b80 00000018 T point_set_infinity	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:115
+101350a4 00000018 r pseudo_ta_ops	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:259
+101190c4 00000018 t sqrmod
+1010c56c 00000018 T tee_ta_get_current_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:763
+10118f50 00000018 t twoexpt
+101003ec 00000018 T uart_clear_rxirq	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:37
+101003d4 00000018 T uart_enable_rxirq	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:30
+10100fa4 00000018 T uart_rx_handler	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/main.c:149
+101350e8 00000018 r user_ta_ops	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:743
+10129a50 00000019 r __FUNCTION__.14
+10129a34 0000001a r __FUNCTION__.13
+1012184c 0000001a T __aeabi_idivmod
+1012159c 0000001a T __aeabi_uidivmod
+10129a18 0000001b r __FUNCTION__.12
+101299d4 0000001b r __FUNCTION__.9
+101350cc 0000001c r __FUNCTION__.1
+10116b44 0000001c T __ascii_wctomb
+101002b0 0000001c T _sbrk	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:65
+10102d00 0000001c T bn_zero	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:334
+10118830 0000001c t get_int
+10100ca8 0000001c T gic_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:149
+1010cac0 0000001c T mbedtls_mpi_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:115
+1011887c 0000001c t montgomery_deinit
+10109390 0000001c t op_attr_bignum_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:753
+101093c4 0000001c t op_attr_bignum_from_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:650
+10109634 0000001c t op_attr_secret_value_clear	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:642
+10109048 0000001c t op_attr_value_from_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:761
+10103b64 0000001c T point_copy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:13
+10117bf8 0000001c t prng_crypto_read
+10100a2c 0000001c T psci_cpu_on	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/psci.c:64
+10100924 0000001c T rzt2m_uart_getc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:421
+10100960 0000001c T rzt2m_uart_putc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:451
+1010f530 0000001c t stdio_exit_handler
+101105a8 0000001c T sysconf
+101003b8 0000001c T uart_getchar	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:25
+1010039c 0000001c T uart_putc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:20
+10135084 0000001e r __FUNCTION__.0
+101167c4 0000001e T __sprint_r
+10108914 00000020 T TEE_CloseObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:190
+10118900 00000020 t copy
+1010ca18 00000020 T crypto_bignum_clear	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:97
+1010badc 00000020 T tee_ioctl_close_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/entry_std.c:422
+1010b65c 00000020 T tee_obj_add	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:41
+1010b6dc 00000020 T tee_obj_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:107
+1010037c 00000020 T uart_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/platform/rzt2m/rzt2m.c:12
+10100940 00000020 T uart_write	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:427
+1010f780 00000022 T __sread
+1010f7e4 00000022 T __sseek
+10116bd4 00000024 T __ascii_mbtowc
+1013beec 00000024 b a.1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:386
+10118e58 00000024 t add
+10118ad4 00000024 t deinit
+10118cbc 00000024 t gcd
+10100cc4 00000024 T gic_handle	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:159
+10100a48 00000024 T irq_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/irq.c:9
+1010ca9c 00000024 T mbedtls_platform_zeroize	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:88
+10118c84 00000024 t mul
+10118dd8 00000024 t muli
+10118dfc 00000024 t sub
+10118eb4 00000024 t unsigned_read
+10110ddc 00000026 T _close_r
+10111144 00000026 T _isatty_r
+1010fe00 00000026 T _sbrk_r
+1013c1c0 00000028 B __malloc_current_mallinfo
+101351e0 00000028 R __mprec_bigtens
+10117588 00000028 T _wcsnrtombs_r
+10102d1c 00000028 T bn_is_zero	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:359
+10118898 00000028 t compare
+10100f7c 00000028 T gic_set_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:527
+10100f48 00000028 T gic_set_prio	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:450
+101001c0 00000028 T irq_handle	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/irq.c:11
+1010cdac 00000028 T mbedtls_mpi_get_bit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:356
+10103b98 00000028 T point_is_infinity	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:124
+1011075c 00000028 T printf
+10135418 00000028 r prng_crypto_desc
+1010c584 00000028 T random32	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/trezor-crypto/rand.c:44
+10135450 00000028 r rcon
+1010097c 00000028 T rzt2m_uart_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:474
+10110ec4 0000002a T fiprintf
+1013a4cc 0000002c r __head	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:743
+10111118 0000002c T _fstat_r
+10116bf8 0000002c T _kill_r
+101001e8 0000002c T _read	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:16
+10100d80 0000002c T gicd_set_route	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:290
+10121310 0000002c T hash_is_valid
+10120cd0 0000002c T ltc_ecc_del_point
+10118920 0000002c t neg
+101210f4 0000002c T prng_is_valid
+1010b75c 0000002c T tee_obj_close_all	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:73
+1010aa5c 0000002c T tee_svc_cryp_free_states	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:2148
+1010c520 0000002c T tee_ta_invoke_command	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:633
+1011116c 0000002e T _lseek_r
+1011119c 0000002e T _read_r
+1010fe28 0000002e T _write_r
+10103204 00000030 T bn_mult_k	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:554
+1010c96c 00000030 T crypto_bignum_bin2bn	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:53
+1011884c 00000030 t get_digit
+10118bcc 00000030 t init_copy
+1010cadc 00000030 T mbedtls_mpi_init_mempool	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:120
+10103dc0 00000030 T point_is_equal	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:132
+1010bba4 00000030 t pseudo_ta_enter_close_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:239
+10118f20 00000030 t read_radix
+10135030 00000030 r tee_cryp_obj_ecc_keypair_attrs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:368
+1010c284 00000030 T tee_ta_get_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:220
+1010b390 00000030 T utee_storage_obj_read	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_storage.c:322
+1011d83c 00000030 T zeromem
+101010e4 00000034 T TA_CloseSessionEntryPoint	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:62
+101086f4 00000034 T __utee_check_inout_annotation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_panic.c:86
+10108684 00000034 T __utee_check_out_annotation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_panic.c:74
+1010c8bc 00000034 T crypto_bignum_num_bytes	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:18
+10107138 00000034 t get_operation_elem	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:79
+10118c50 00000034 t invmod
+10118e7c 00000038 t addi
+10103270 00000038 T bn_addmod	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:1093
+10102d94 00000038 T bn_is_equal	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:455
+10109694 00000038 t op_attr_secret_value_from_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:550
+10118e20 00000038 t subi
+10108e1c 0000003c T TEE_CloseAndDeletePersistentObject1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:481
+101085b8 0000003c T TEE_GenerateRandom	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:1893
+101086b8 0000003c T __utee_check_attr_in_annotation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_panic.c:80
+10115934 0000003c T _wcrtomb_r
+10103234 0000003c T bn_add	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:1057
+10102e34 0000003c T bn_lshift	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:482
+10118ce0 0000003c t div_2
+10118d1c 0000003c t divide
+1010eb7c 0000003c T mbedtls_mpi_montg_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1970
+101090d0 0000003c t tee_svc_find_type_props	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:912
+101190dc 0000003c t unsigned_write
+101171f4 0000003e T __mcmp
+1010f7a4 0000003e T __swrite
+10105904 00000040 T MDinit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ta_ripemd160.c:30
+10108b64 00000040 T TEE_InitRefAttribute	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:300
+10108ba4 00000040 T TEE_InitValueAttribute	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:312
+1010f54c 00000040 t cleanup_stdio
+10118114 00000040 T crypto_acipher_ecc_sign
+10117f5c 00000040 T crypto_mac_free_ctx
+10118b8c 00000040 t init
+1010d9dc 00000040 T mbedtls_mpi_add_int	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1398
+1010d5d4 00000040 T mbedtls_mpi_cmp_int	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1163
+1010e798 00000040 T mbedtls_mpi_div_int	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1852
+10101118 00000040 t print_uint8	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:418
+10102674 00000040 t print_uint8	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip32.c:10
+101188c0 00000040 t set_int
+10134c20 00000040 R sha512_initial_hash_value	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:264
+101101ec 00000042 T _fwalk_sglue
+1010fdbc 00000044 T __assert_func
+10103388 00000044 T bn_mod	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:565
+10103344 00000044 T bn_subtract	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:1134
+10117ecc 00000044 T crypto_cipher_free_ctx
+10117bb4 00000044 T crypto_rng_improvised
+10117994 00000044 t hash_get_ctx_size
+1010ebb8 00000044 T mbedtls_ct_mpi_uint_cond_assign	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1975
+10118c0c 00000044 t montgomery_setup
+10109650 00000044 t op_attr_secret_value_from_obj	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:630
+10116dd8 00000046 T __hi0bits
+101087b4 00000048 T __utee_from_attr	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:14
+101180c0 00000048 T crypto_init
+1010bafc 00000048 T ioctl	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/entry_std.c:94
+1010b614 00000048 T tee_svc_copy_kaddr_to_uref	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc.c:969
+10118ed8 00000048 t write_radix
+10116cd0 0000004c T _Balloc
+10102c64 0000004c T bn_read_be	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:91
+101032a8 0000004c T bn_subi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:1112
+10108624 0000004c t check_res	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_panic.c:30
+10117c14 0000004c T crypto_hash_alloc_ctx
+10117f10 0000004c T crypto_mac_alloc_ctx
+10103df0 0000004c T point_is_negative_of	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:143
+1010b67c 0000004c T tee_obj_get	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:47
+1010f684 0000004e T __sinit
+101087fc 00000050 T TEE_GetObjectInfo1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:57
+10102d44 00000050 T bn_is_less	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:372
+101032f4 00000050 T bn_subtractmod	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:1122
+10102cb0 00000050 T bn_write_be	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:222
+10117e7c 00000050 T crypto_cipher_alloc_ctx
+10118070 00000050 T crypto_mac_final
+1011916c 00000050 t setup_mix
+10109080 00000050 t tee_svc_cryp_obj_find_type_attr_idx	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:899
+1010bb44 00000050 t update_out_param	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:138
+1011102c 00000054 T _fflush_r
+10100214 00000054 T _write	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:27
+10134f2c 00000054 r attr_ops	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:826
+10119118 00000054 T crypto_bignum_allocate
+10119f18 00000054 T rijndael_keysize
+10116e20 00000058 T __lo0bits
+101167e4 00000058 T __ssprint_r
+1010313c 00000058 T bn_multiply	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:666
+10117c60 00000058 T crypto_hash_free_ctx
+1011dfb8 00000058 T ltc_deinit_multi
+1010b7f4 00000058 T tee_uuid_from_octets	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/uuid.c:28
+10116ae8 0000005a T raise
+10118014 0000005c T crypto_mac_update
+10118154 0000005c t ecc_set_curve_from_name
+1011a24c 0000005c T hmac_process
+10120c74 0000005c T ltc_ecc_new_point
+1010cd50 0000005c T mbedtls_mpi_lset	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:337
+10110320 0000005c T memcmp
+10120dd0 0000005c t s_ecc_cmp_hex_bn
+1010f4d4 0000005c T strlen
+1010c00c 0000005c t user_ta_enter_close_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:639
+10116e78 00000060 T __i2b
+10102e70 00000060 T bn_mult_half	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:534
+1010910c 00000060 t copy_in_attrs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1342
+10119ff4 00000060 T find_hash
+1011e7d8 00000060 T find_prng
+1011a8ac 00000060 T sha1_init
+1010b6fc 00000060 T tee_obj_close	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_obj.c:61
+101089ac 00000064 T TEE_FreeTransientObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:226
+10108a10 00000064 T TEE_ResetTransientObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:246
+1010c99c 00000064 T crypto_bignum_copy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:63
+1010ca38 00000064 t mpi_get_digit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:463
+10104d30 00000064 T sha512_Init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:978
+10139878 00000068 R aes_desc
+10102dcc 00000068 T bn_cmov	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:467
+10118f80 00000068 t compare_d
+10120d68 00000068 T ltc_ecc_copy_point
+1010cb0c 00000068 T mbedtls_mpi_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:128
+101398e0 00000068 R sha1_desc
+10139948 00000068 R sha256_desc
+10139c30 00000068 R sha512_desc
+10117cb8 0000006c T crypto_hash_init
+1011dddc 0000006c T ecc_free
+10104b34 0000006c T ecdsa_get_public_key65	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:494
+1013be80 0000006c b jres.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:392
+10120cfc 0000006c T ltc_ecc_set_point_xyz
+1011a054 0000006c T register_hash
+101212a4 0000006c T register_prng
+1010b788 0000006c T tee_pobj_release	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_pobj.c:150
+101178f0 0000006c T vPortFree
+101009b4 00000070 W arch_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/init.c:12
+10103194 00000070 T bn_fast_mod	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:679
+10101070 00000074 T TA_OpenSessionEntryPoint	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:47
+1011e010 00000074 T ltc_cleanup_multi
+10118b18 00000074 t montgomery_normalization
+10116b60 00000074 T strncpy
+101169f8 00000076 T _putc_r
+10108934 00000078 T TEE_AllocateTransientObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:204
+10117f9c 00000078 T crypto_mac_init
+10116a70 00000078 T frexp
+1010ced0 00000078 T mbedtls_mpi_bitlen	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:436
+1010b84c 00000078 T tee_ioctl_open_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/entry_std.c:356
+1011037c 0000007a T _calloc_r
+1010c8f0 0000007c T crypto_bignum_bn2bin	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/core/bignum2.c:41
+10117d24 0000007c T crypto_hash_update
+10100dac 0000007c T gicd_set_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:307
+10100ecc 0000007c T gicr_set_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:424
+1010ce54 0000007c T mbedtls_mpi_lsb	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:402
+10100410 0000007c T register_protect_disable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:108
+1010bf90 0000007c t user_ta_ctx_destroy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:683
+1010bf14 0000007c t user_ta_enter_invoke_cmd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:609
+1010c068 0000007c t user_ta_enter_open_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:484
+1010fe64 0000007c T vsnprintf
+10114970 00000080 t __sbprintf
+101158a4 00000080 t __sbprintf
+101030bc 00000080 T bn_multiply_reduce	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:647
+1013bfe0 00000080 b key_pad.1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/hmac.c:148
+10118d58 00000080 t lcm
+1010cdd4 00000080 T mbedtls_mpi_set_bit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:373
+10109c08 00000080 T tee_obj_attr_clear	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1012
+10109b88 00000080 T tee_obj_attr_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:993
+101097e0 00000080 t tee_svc_cryp_get_state	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1853
+10108728 00000080 T tee_user_mem_alloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_user_mem.c:46
+101002f8 00000084 W _init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/retarget.c:100
+101025f0 00000084 T from_mnemonic_to_seed	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip39.c:60
+1010d8d4 00000084 T mbedtls_mpi_add_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1328
+1010d958 00000084 T mbedtls_mpi_sub_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1363
+101093e0 00000084 t op_attr_bignum_from_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:718
+1011c3c8 00000084 T sha256_init
+1010716c 00000088 T TEE_FreeOperation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:416
+10140220 00000088 B cipher_descriptor
+101402a8 00000088 B hash_descriptor
+10140330 00000088 B prng_descriptor
+10119f6c 00000088 T register_cipher
+10107ec0 0000008c T TEE_ResetOperation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:553
+1010bbd4 0000008c t copy_in_param	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:88
+10109860 0000008c t op_attr_secret_value_from_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:608
+10108e58 00000090 T TEE_ReadObjectData	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:627
+101095a4 00000090 t op_attr_secret_value_to_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:563
+1010c770 00000090 T pbkdf2_hmac_sha512_Update	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/trezor-crypto/pbkdf2.c:134
+1010bc60 00000090 t pseudo_ta_enter_invoke_cmd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:211
+1010aa88 00000090 T utee_cryp_state_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:2156
+1010f6ec 00000092 T snprintf
+10118a40 00000094 t modi
+10111080 00000096 T memchr
+10100ce8 00000098 T gicd_set_prio	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:200
+101098ec 00000098 t op_attr_secret_value_to_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:587
+10109984 00000098 T utee_cryp_obj_get_info	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:856
+1010dfbc 0000009c T mbedtls_mpi_mul_int	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1590
+10109464 0000009c t op_attr_bignum_to_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:696
+10117670 0000009c t prvInsertBlockIntoFreeList
+1010bcf0 0000009c t pseudo_ta_enter_open_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:175
+10100888 0000009c T rzt2m_uart_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:253
+1010f338 0000009e T _puts_r
+1010048c 000000a0 T register_protect_enable	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:227
+10100e28 000000a4 T gicr_set_prio	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:320
+10109500 000000a4 t op_attr_bignum_to_user	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:658
+1011e734 000000a4 T rand_bn_upto
+10116d30 000000a6 T __multadd
+10116c28 000000a8 T __swbuf_r
+1011e5a0 000000a8 T ecc_generate_key
+101104f0 000000a8 T memset
+1011d3d8 000000a8 T sha512_init
+1010b2e8 000000a8 T utee_storage_obj_del	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_storage.c:287
+10108ca0 000000ac T TEE_OpenPersistentObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:401
+10118780 000000b0 T crypto_asym_alloc_ecc_keypair
+10134f80 000000b0 r tee_cryp_obj_props	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:413
+1011de48 000000b4 T ltc_init_multi
+10100fbc 000000b4 T main	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/main.c:680
+1010e7d8 000000b8 T mbedtls_mpi_mod_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1871
+1011704c 000000ba T __pow5mult
+101105c4 000000ba T strcpy
+10108be4 000000bc T TEE_CopyObjectAttributes1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:345
+10108180 000000bc T TEE_MACInit	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:1212
+101041ec 000000bc T jacobian_to_curve	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:227
+1011defc 000000bc T ltc_init_multi_size
+1010c800 000000bc T pbkdf2_hmac_sha512_Final	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/trezor-crypto/pbkdf2.c:146
+101173cc 000000c0 T __d2b
+101175b0 000000c0 T __ssputs_r
+10110e04 000000c0 T _fclose_r
+10110b14 000000c0 T _malloc_trim_r
+1010823c 000000c4 T TEE_MACUpdate	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:1233
+10110230 000000c4 T __swsetup_r
+1010a158 000000c4 T utee_cryp_obj_reset	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1313
+1010884c 000000c8 T TEE_GetObjectBufferAttribute	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:107
+10135208 000000c8 R __mprec_tens
+10104034 000000c8 T conditional_negate	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:162
+10102b9c 000000c8 T hdnode_public_ckd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip32.c:284
+1010e890 000000cc T mbedtls_mpi_mod_int	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1897
+1010ac0c 000000cc T utee_hash_update	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:2222
+10108d4c 000000d0 T TEE_CreatePersistentObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:428
+1013bf10 000000d0 b context.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/hmac.c:152
+1013ac44 000000d0 D ltc_mp
+10102fe4 000000d8 T bn_multiply_reduce_step	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:608
+10110680 000000dc T __smakebuf_r
+10117da0 000000dc T crypto_hash_final
+1010cc74 000000dc T mbedtls_mpi_copy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:277
+10118fe8 000000dc t mulmod
+1010d060 000000e0 T mbedtls_mpi_write_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:955
+10117108 000000ec T __lshift
+1010f3e8 000000ec T memcpy
+1011e648 000000ec T rand_bn_bits
+10106f4c 000000f0 T MDfinish	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ta_ripemd160.c:243
+10108a74 000000f0 T TEE_PopulateTransientObject	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_objects.c:266
+101040fc 000000f0 T curve_to_jacobian	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:210
+1011894c 000000f4 t montgomery_reduce
+1010ab18 000000f4 T utee_hash_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:2173
+10118688 000000f8 t _ltc_ecc_sign
+1010f58c 000000f8 t global_stdio_init.part.0
+101103f8 000000f8 T memmove
+1011748c 000000fa T _wcsnrtombs_l
+1010703c 000000fc T RMD	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ta_ripemd160.c:275
+10107f4c 000000fc T TEE_SetOperationKey	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:576
+1011d740 000000fc T hash_memory
+1010b4ec 000000fc T tee_mac_get_digest_size	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_cryp_utl.c:98
+10100ba8 00000100 T gicd_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:117
+1010cb74 00000100 T mbedtls_mpi_grow	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:150
+101352d0 00000101 R _ctype_
+1010d37c 00000104 T mbedtls_mpi_cmp_abs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1096
+1010cf5c 00000104 T mbedtls_mpi_read_binary	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:876
+1012189c 00000106 T __udivmoddi4
+1011e494 0000010c T pk_oid_str_to_num
+10102ed0 00000114 T bn_multiply_long	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:576
+101096cc 00000114 t cryp_state_free	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1869
+1010d268 00000114 T mbedtls_mpi_shift_r	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1052
+1010b1cc 0000011c T utee_storage_obj_open	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_storage.c:155
+1010a028 00000120 T utee_cryp_obj_alloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1253
+1011aa90 00000124 T sha1_process
+1011c5d0 00000124 T sha256_process
+1011d61c 00000124 T sha512_process
+1010b0a8 00000124 T utee_storage_obj_create	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_storage.c:53
+1010d140 00000128 T mbedtls_mpi_shift_l	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1001
+10100a7c 0000012c T gic_cpu_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/arch/armv8/gicv3.c:109
+1010b3c0 0000012c T tee_hash_get_digest_size	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_cryp_utl.c:33
+10109ef8 00000130 T tee_obj_set_type	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1167
+1010c2b4 00000130 T tee_ta_close_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:407
+1010d614 00000134 T mbedtls_mpi_add_abs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1180
+10115988 00000136 t quorem
+10108048 00000138 T TEE_DigestDoFinal	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:861
+1013c084 00000138 B __sf
+10110ef0 0000013a T __sflush_r
+1010c3e4 0000013c T tee_ta_open_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/tee_ta_manager.c:566
+1013a998 00000140 D _impure_data
+10108ee8 00000140 T trace_printf	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutils/ext/trace.c:100
+1010a5e8 00000140 T utee_cryp_obj_copy	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1577
+1013bd38 00000148 b pctx.0	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip39.c:63
+1010d480 00000154 T mbedtls_mpi_cmp_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1128
+10108460 00000158 T TEE_AsymmetricSignDigest	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:1778
+10120e2c 00000158 t s_ecc_oid_lookup
+10108300 00000160 T TEE_MACComputeFinal	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:1260
+1013aad8 0000016c D __global_locale
+10109a1c 0000016c T utee_cryp_obj_get_attr	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:949
+10120f84 00000170 T ecc_copy_curve
+1010de4c 00000170 T mbedtls_mpi_mul_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1538
+10116ed8 00000172 T __multiply
+1010ebfc 00000174 T mbedtls_mpi_montred	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:2098
+10104ba0 0000017c T hmac_sha512_prepare	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/hmac.c:146
+1011a90c 0000017c T sha1_done
+1011c44c 0000017c T sha256_done
+10121120 00000184 T ltc_ecc_is_point_at_infinity
+1010bd8c 00000188 T tee_ta_init_pseudo_ta_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/pseudo_ta.c:300
+1011a0c0 0000018c T hmac_init
+1010d748 0000018c T mbedtls_mpi_sub_abs	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1273
+1011d480 00000194 T sha512_done
+10117234 00000198 T __mdiff
+1010c0e4 000001a0 T tee_ta_init_user_ta_session	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/user_ta.c:780
+1010ed70 000001ac T mbedtls_mpi_gcd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:2386
+1011683c 000001ba T strcmp
+101013a8 000001c0 t get_child_privatekey	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:313
+1010e058 000001c4 T mbedtls_mpi_read_string	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:480
+1010c5ac 000001c4 T pbkdf2_hmac_sha512_Init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/trezor-crypto/pbkdf2.c:105
+1011e2cc 000001c8 T ecc_set_curve
+10101568 000001c8 t get_child_publickey	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:375
+101179d8 000001dc t tee_algo_to_ltc_hashindex
+1010acd8 000001dc T utee_hash_final	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:2270
+1011a2a8 000001e0 T hmac_done
+1011770c 000001e4 T pvPortMalloc
+1010aeb4 000001f4 T utee_asymm_operate	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:3214
+10103e3c 000001f8 T point_add	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:21
+10103bc0 00000200 T point_double	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:69
+10110bd4 00000208 T _free_r
+101181b0 00000208 t _ltc_ecc_generate_keypair
+1010916c 00000214 t tee_svc_cryp_check_key_type	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1902
+1010b8c4 00000218 T tee_ioctl_invoke	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/kernel/entry_std.c:392
+101023d0 00000220 T get_random_mnemonic	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip39.c:15
+1010e95c 00000220 T mbedtls_mpi_write_string	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:589
+101056e0 00000224 T sha512_Final	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:1231
+10120400 0000022c T ltc_ecc_map
+101026b4 00000240 T hdnode_from_seed	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip32.c:19
+1011e084 00000248 T ecc_find_curve
+10104610 0000024c T point_jacobian_double	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:334
+10101158 00000250 t from_mnemonic_to_masterkey	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:427
+10121340 0000025c T __udivsi3
+10109c88 00000270 T tee_obj_attr_copy_from	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1093
+101399b0 00000280 r K
+10134c60 00000280 r K512	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:220
+101215b8 00000294 T __divsi3
+101028f4 000002a8 T hdnode_private_ckd	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bip32.c:67
+1010485c 000002c4 T point_multiply	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:382
+101183b8 000002d0 T ecc_populate_ltc_private_key
+10105404 000002dc T sha512_Update	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:1134
+1010fee0 0000030a T __sfvwrite_r
+1010a728 00000334 T utee_cryp_state_alloc	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1985
+1010052c 0000035c T renesas_uart_init	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/drivers/rzt2m_uart/rzt2m_uart.c:321
+101042a8 00000368 T point_jacobian_add	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ecdsa.c:244
+10110798 0000037a T _realloc_r
+1010a21c 000003cc T utee_cryp_obj_populate	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/tee/tee_svc_cryp.c:1518
+10139c98 000003d4 r s_curve_names
+10139078 00000400 r TD0
+10136c78 00000400 r TD1
+10136878 00000400 r TD2
+10136478 00000400 r TD3
+10139478 00000400 r TE0
+10138878 00000400 r TE1
+10138478 00000400 r TE2
+10138078 00000400 r TE3
+10138c78 00000400 r Td4
+10137c78 00000400 r Te4_0
+10137878 00000400 r Te4_1
+10137478 00000400 r Te4_2
+10137078 00000400 r Te4_3
+10136078 00000400 r Tks0
+10135c78 00000400 r Tks1
+10135878 00000400 r Tks2
+10135478 00000400 r Tks3
+1013a588 00000408 D __malloc_av_
+1010ef1c 0000041c T mbedtls_mpi_inv_mod	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:2631
+1011a488 00000424 t sha1_compress
+1010da1c 00000430 T mpi_mul_hlp	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1471
+10119688 00000434 T rijndael_ecb_encrypt
+10119abc 00000450 T rijndael_ecb_decrypt
+1013a06c 00000460 R ltc_ecc_curves
+101191bc 000004cc T rijndael_setup
+10101730 00000524 t get_bitcoin_address	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:232
+1011d86c 00000570 T ecc_sign_hash_ex
+1010e21c 0000057c T mbedtls_mpi_div_mpi	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libmbedtls/mbedtls/library/bignum.c:1724
+1010f830 0000058c T _malloc_r
+1011e838 00000604 T ltc_ecc_mulmod
+1012062c 00000648 T ltc_ecc_mul2add
+10104d94 00000670 T sha512_Transform	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/sha2.c:1063
+10101c54 0000077c T TA_InvokeCommandEntryPoint	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/bw_ta.c:67
+101033cc 00000798 T bn_inverse	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/bignum.c:777
+1011fa48 000009b8 T ltc_ecc_projective_dbl_point
+1011ee3c 00000c0c T ltc_ecc_projective_add_point
+101071f4 00000ccc T TEE_AllocateOperation	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../tee/lib/libutee/tee_api_operations.c:92
+1011c6f4 00000ce0 t sha512_compress
+10115ac0 00000cea T _dtoa_r
+101149f0 00000eb2 T _vfiprintf_r
+1013ad18 00001000 B irq_handlers	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/BaremetalRuntime//src/core/irq.c:4
+10105944 00001608 T compress	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/ta_ripemd160.c:43
+1011abb4 00001814 t sha256_compress
+101111d0 00001b60 T _svfprintf_r
+10112d30 00001c3e T _vfprintf_r
+10129a80 00002004 r wordlist	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/tee/lib/libutee/trezor-crypto/bip39_english.h:24
+1013c220 00004000 b ucHeap
+1012bb44 000090dc R secp256k1	/home/mjs/CROSSCON/TOREMOVE/RebaseTester/mTower/arch/cortex-r52/rzt2m/src/rzt2m/secure/../../../../../../apps/bw/ta/crypto/secp256k1.c:26

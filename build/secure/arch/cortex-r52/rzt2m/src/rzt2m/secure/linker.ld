@@ -1,5 +1,5 @@
 MEMORY {
-    RAM (rwx) : ORIGIN = 0x10100000, LENGTH = 0x80000
+    RAM (rwx) : ORIGIN = 0x10100000, LENGTH = 0x30000
 }
 ENTRY(_start)
 SECTIONS {
@@ -55,7 +55,7 @@ SECTIONS {
  .stack (NOLOAD) : {
   . = ALIGN(16);
   PROVIDE(_stack_base = .);
-  . = . + (2 * 0x4000 * 2);
+  . = . + (2 * 0x4000 * 1);
   PROVIDE(_stack_top = .);
  } > RAM
  PROVIDE(_heap_base = .);

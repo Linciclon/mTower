@@ -323,7 +323,7 @@ void renesas_uart_init (volatile R_SCI0_Type * const p_uart, uart_cfg_t const * 
     
     register_protect_disable(BSP_REG_PROTECT_LPC_RESET);
     R_BSP_MODULE_START(FSP_IP_SCI, p_cfg->channel); //previous version we comment to isolate an error when trying to add channel 2 uart
-    R_BSP_MODULE_START(FSP_IP_MTU3, 3); //TO WRITE IN TIMER3
+    //R_BSP_MODULE_START(FSP_IP_MTU3, 3); //TO WRITE IN TIMER3
     //R_SYSC_NS->MSTPCRC_b.MSTPCRC00 = 0; //JOAO TIMER ENABLE TO WRITE
     RSELP18 |= (1u << 5) | (1u << 4);
     register_protect_enable(BSP_REG_PROTECT_LPC_RESET);

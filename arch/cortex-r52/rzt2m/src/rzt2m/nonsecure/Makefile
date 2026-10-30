@@ -130,8 +130,8 @@ OBJS_NS = $(AOBJS_NS) $(COBJS_NS)
 
 LIBPATHS = -L. -L"$(TOPDIR)/lib"
 
-#LIBS =  -lm -lc -lnosys -lm2351_StdDriver_ns -lnsc -lFreeRTOS_ns
-LIBS =  -lm -lc -lnosys -lnsc -lFreeRTOS_ns
+# RZ/T2M reaches the TEE through CROSSCON; it has no TrustZone-M NSC import.
+LIBS =  -lm -lc -lnosys -lFreeRTOS_ns
 
 $(gen_ld_file): $(LD_FILE)
 	@echo "Preprocessing Linker Files"
