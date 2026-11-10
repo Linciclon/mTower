@@ -654,7 +654,7 @@ int main(void)
   printf(NORMAL "\n\n\t-= mTower v" VERSION " =-  " __DATE__ "  " __TIME__"\n\n");
 
   printf("+---------------------------------------------+\n");
-  printf("|     Secure handler (BL32) is running ...    |\n");
+  printf("|     Secure handler (mtower 1) is running ...    |\n");
   printf("+---------------------------------------------+\n");
 
   /* Init GPIO Port A for secure LED control */

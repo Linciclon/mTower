@@ -4,6 +4,7 @@
  */
 
 #include "rzt2m_uart.h"
+#include <plat.h>
 #include <stddef.h>
 #include "ioport.h"
 #include <cpu.h>
@@ -289,7 +290,7 @@ void rzt2m_uart_init(volatile R_SCI0_Type * const p_api_ctrl)
 
         const uart_cfg_t g_uart0_cfg =
         { 
-        .channel = (0x80002000 ==((uint32_t)p_api_ctrl)) ? 4:(((uint32_t) p_api_ctrl>>SCI_NonSecure_mask)&Channel1to3_selector) +((((uint32_t) p_api_ctrl >>SCI_Secure_mask)&0x1)*Channel5_selector),
+        .channel = RZT2M_UART_CHANNEL,
         .data_bits = UART_DATA_BITS_8,
         .parity = UART_PARITY_OFF,
         .stop_bits = UART_STOP_BITS_1,
@@ -316,7 +317,83 @@ void R_BSP_ModuleStart_SCI(uint8_t channel)
 
 }
 
-#define RSELP18 (*(volatile uint8_t*)0x81030C12) // RSELPm: 0x81030C00 + m
+// static void rzt2m_uart_configure_pins(void)
+// {
+//     R_RWP_S->PRCRS = 0x0000A504;
+
+// #if defined(USE_UART5)
+//     /* SCI5: RX=P21_2/PFC5, TX=P21_3/PFC4, safety region. */
+//     R_PTADR->RSELP[21] &= (uint8_t) ~((1U << 2) | (1U << 3));
+//     R_PORT_SR->PFC_b[21].PFC2 = 5;
+//     R_PORT_SR->PFC_b[21].PFC3 = 4;
+//     R_PORT_SR->PM_b[21].PM2 = 1;
+//     R_PORT_SR->PM_b[21].PM3 = 0;
+//     R_PORT_SR->PMC_b[21].PMC2 = 1;
+//     R_PORT_SR->PMC_b[21].PMC3 = 1;
+// #else
+// #if defined(USE_UART0)
+//     /* SCI0: RX=P16_6/PFC2, TX=P16_5/PFC1. */
+//     //R_PTADR->RSELP[16] |= (1U << 6) | (1U << 5);
+// #elif defined(USE_UART1)
+//     /* SCI1: RX=P13_0/PFC6, TX=P13_1/PFC5. */
+//     R_PTADR->RSELP[13] |= (1U << 0) | (1U << 1);
+// #elif defined(USE_UART2)
+//     /* SCI2: RX=P03_5/PFC5, TX=P03_6/PFC6. */
+//     R_PTADR->RSELP[3] |= (1U << 5) | (1U << 6);
+// #elif defined(USE_UART3)
+//     /* SCI3: RX=P17_7/PFC4, TX=P18_0/PFC4. */
+//     R_PTADR->RSELP[17] |= (1U << 7);
+//     R_PTADR->RSELP[18] |= (1U << 0);
+// #elif defined(USE_UART4)
+//     /* SCI4: RX=P18_5/PFC2, TX=P18_4/PFC2. */
+//     R_PTADR->RSELP[18] |= (1U << 5) | (1U << 4);
+// #endif
+
+//     R_RWP_S->PRCRS = 0x0000A500;
+//     R_RWP_NS->PRCRN = 0x0000A504;
+
+// #if defined(USE_UART0)
+//     // R_PORT_NSR->PFC_b[16].PFC6 = 2;
+//     // R_PORT_NSR->PFC_b[16].PFC5 = 1;
+//     // R_PORT_NSR->PM_b[16].PM6 = 1;
+//     // R_PORT_NSR->PM_b[16].PM5 = 0;
+//     // R_PORT_NSR->PMC_b[16].PMC6 = 1;
+//     // R_PORT_NSR->PMC_b[16].PMC5 = 1;
+// #elif defined(USE_UART1)
+//     R_PORT_NSR->PFC_b[13].PFC0 = 6;
+//     R_PORT_NSR->PFC_b[13].PFC1 = 5;
+//     R_PORT_NSR->PM_b[13].PM0 = 1;
+//     R_PORT_NSR->PM_b[13].PM1 = 0;
+//     R_PORT_NSR->PMC_b[13].PMC0 = 1;
+//     R_PORT_NSR->PMC_b[13].PMC1 = 1;
+// #elif defined(USE_UART2)
+//     R_PORT_NSR->PFC_b[3].PFC5 = 5;
+//     R_PORT_NSR->PFC_b[3].PFC6 = 6;
+//     R_PORT_NSR->PM_b[3].PM5 = 1;
+//     R_PORT_NSR->PM_b[3].PM6 = 0;
+//     R_PORT_NSR->PMC_b[3].PMC5 = 1;
+//     R_PORT_NSR->PMC_b[3].PMC6 = 1;
+// #elif defined(USE_UART3)
+//     R_PORT_NSR->PFC_b[17].PFC7 = 4;
+//     R_PORT_NSR->PFC_b[18].PFC0 = 4;
+//     R_PORT_NSR->PM_b[17].PM7 = 1;
+//     R_PORT_NSR->PM_b[18].PM0 = 0;
+//     R_PORT_NSR->PMC_b[17].PMC7 = 1;
+//     R_PORT_NSR->PMC_b[18].PMC0 = 1;
+// #elif defined(USE_UART4)
+//     R_PORT_NSR->PFC_b[18].PFC5 = 2;
+//     R_PORT_NSR->PFC_b[18].PFC4 = 2;
+//     R_PORT_NSR->PM_b[18].PM5 = 1;
+//     R_PORT_NSR->PM_b[18].PM4 = 0;
+//     R_PORT_NSR->PMC_b[18].PMC5 = 1;
+//     R_PORT_NSR->PMC_b[18].PMC4 = 1;
+// #endif
+
+//     R_RWP_NS->PRCRN = 0x0000A500;
+// #endif
+
+//     R_RWP_S->PRCRS = 0x0000A500;
+// }
 
 void renesas_uart_init (volatile R_SCI0_Type * const p_uart, uart_cfg_t const * const p_cfg)
 {
@@ -325,59 +402,9 @@ void renesas_uart_init (volatile R_SCI0_Type * const p_uart, uart_cfg_t const * 
     R_BSP_MODULE_START(FSP_IP_SCI, p_cfg->channel); //previous version we comment to isolate an error when trying to add channel 2 uart
     //R_BSP_MODULE_START(FSP_IP_MTU3, 3); //TO WRITE IN TIMER3
     //R_SYSC_NS->MSTPCRC_b.MSTPCRC00 = 0; //JOAO TIMER ENABLE TO WRITE
-    RSELP18 |= (1u << 5) | (1u << 4);
     register_protect_enable(BSP_REG_PROTECT_LPC_RESET);
 
-    R_RWP_S->PRCRS = 0x0000A504; // Enable write to GPIO and LPC registers
-    // //Confif Ports CH2
-    // // P3_5 e P3_6 em Non-safety (RS5=1, RS6=1)
-    // RSELP3 |= (1u << 5) | (1u << 6);
-    
-    // /*Selecionar funções (multiplex) nos nibbles PFC */
-    // R_PORT_NSR->PFC_b[3].PFC5 = 5;  // P03_5 -> RXD2
-    // R_PORT_NSR->PFC_b[3].PFC6 = 6;  // P03_6 -> TXD2
-
-    // /* Direção (opcional mas recomendado antes do PMC) */
-    // R_PORT_NSR->PM_b[3].PM5 = 1;    // P3_5 input (RX)
-    // R_PORT_NSR->PM_b[3].PM6 = 0;    // P3_6 output (TX)
-
-    // /* Caminho de entrada do periférico para o RX */
-    // //R_PORT_NSR->PIPC_b[3].PIPC5 = 1;
-
-    // /*Colocar os pinos em modo periférico (PMC = 1) */
-    // R_PORT_NSR->PMC_b[3].PMC5 = 1;  // P03_5 peripheral
-    // R_PORT_NSR->PMC_b[3].PMC6 = 1;  // P03_6 peripheral
-    // ////////////////
-
-    //Confif Ports CH4
-    // P18_5 e P18_4 em Non-safety (RS4=1, RS5=1)
-    // P18_5 -> rxd4
-    // P18_4 -> txd4
-    // Connectation in Jumper mikroBUS MOSI para P18_5 (rx) e SCK para P18_4 (tx) 
-    #if defined(USE_UART4)
-        RSELP18 |= (1u << 5) | (1u << 4);
-        R_RWP_S->PRCRS = 0x0000A500; // Enable write to GPIO and LPC registers
-
-        R_RWP_NS->PRCRN = 0x0000A504;
-        /*Selecionar funções (multiplex) nos nibbles PFC */
-        R_PORT_NSR->PFC_b[18].PFC5 = 2;  // P18_5 -> RXD4
-        R_PORT_NSR->PFC_b[18].PFC4 = 2;  // P18_4 -> TXD4
-
-        /* Direção (opcional mas recomendado antes do PMC) */
-        R_PORT_NSR->PM_b[18].PM5 = 1;    // P3_5 input (RX)
-        R_PORT_NSR->PM_b[18].PM4 = 0;    // P3_6 output (TX)
-
-        /* Caminho de entrada do periférico para o RX */
-        //R_PORT_NSR->PIPC_b[18].PIPC5 = 1;
-
-        /*Colocar os pinos em modo periférico (PMC = 1) */
-        R_PORT_NSR->PMC_b[18].PMC5 = 1;  // P18_5 peripheral
-        R_PORT_NSR->PMC_b[18].PMC4 = 1;  // P18_4 peripheral
-        R_RWP_NS->PRCRN = 0x0000A500;
-    #endif
-    ////////////////
-
-
+    //rzt2m_uart_configure_pins();
 
     p_uart->CCR0 = SCI_UART_CCR0_DEFAULT_VALUE;
     FSP_HARDWARE_REGISTER_WAIT(p_uart->CCR0_b.RE, 0);
