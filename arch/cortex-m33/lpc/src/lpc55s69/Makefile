@@ -25,6 +25,9 @@
 MTOWER_S = $(TOPDIR)/mtower_s.bin
 MTOWER_NS = $(TOPDIR)/mtower_ns.bin
 
+# BL33 is built in the separate freertos-over-CROSSCONHyp repository.
+MTOWER_EXTERNAL_BL33 := y
+
 #como para ja nao preciso disto comento
 # ifeq ($(CONFIG_BOOTLOADER2),y)
 # BL2 := $(TOPDIR)/build/secure$(subst $(TOPDIR),,$(shell pwd))/../NuBL2/bl2.bin
@@ -54,8 +57,8 @@ mtower$(EXEEXT):
 ifeq ($(CONFIG_BOOTLOADER32),y)
 	$(Q) $(MAKE) -C secure TOPDIR="$(TOPDIR)" mtower_s$(EXEEXT)
 endif
-ifeq ($(CONFIG_BOOTLOADER33),y)
-#	$(Q) $(MAKE) -C nonsecure TOPDIR="$(TOPDIR)" mtower_ns$(EXEEXT)
+ifneq ($(MTOWER_EXTERNAL_BL33),y)
+	$(Q) $(MAKE) -C nonsecure TOPDIR="$(TOPDIR)" mtower_ns$(EXEEXT)
 endif
 
 #Isto serve para agregar as diferente partes do Boot, como o que vou colocar é em cima de uma VM, nao preciso desta informaçao
@@ -92,7 +95,7 @@ endif
 	$(Q) printf "$(GREEN)| mtower_s        | 0x%08x | 0x%08x | %u\t| mtower_s.bin  |$(NORMAL)\n" $(mtower_s_start) $$(( $(mtower_s_start) + $(mtower_s_sz) )) $(mtower_s_sz)
 	$(Q) printf "$(GREEN)+-----------------------------------------------------------------------+$(NORMAL)\n"
 
-ifeq ($(CONFIG_BOOTLOADER33),y)
+ifneq ($(MTOWER_EXTERNAL_BL33),y)
 	$(eval bl33_sz = `stat -c%s $(TOPDIR)/build/nonsecure$(subst $(TOPDIR),,$(shell pwd))/nonsecure/bl33.bin`)
 	$(eval bl33_start = $(CONFIG_START_ADDRESS_BL33))
 

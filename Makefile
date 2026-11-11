@@ -20,6 +20,11 @@
 
 TOPDIR := ${shell pwd | sed -e 's/ /\\ /g'}
 
+# To run this inside a VM. Comment this line to build mTower as the native
+# secure-world firmware which boots the non-secure FreeRTOS image directly.
+#RUN_INSIDE_VM:=y
+export RUN_INSIDE_VM
+
 -include $(TOPDIR)/.config
 -include $(TOPDIR)/Make.defs
 

@@ -27,6 +27,14 @@ MEMORY {
 ENTRY(_start)
 
 SECTIONS {
+#if defined(PLAT_NSC_BASE)
+    . = PLAT_NSC_BASE;
+    .gnu.sgstubs : ALIGN(32) {
+        __start_NSC = .;
+        . = ALIGN(4);
+    }
+    __end_NSC = .;
+#endif
 
     .start : {
         *(.start)
@@ -90,4 +98,9 @@ SECTIONS {
     . = . + 2M; /* 2M of total stack size */
 #endif
     PROVIDE(_heap_base = .);
+
+#if defined(PLAT_NSC_BASE)
+    ASSERT(SIZEOF(.gnu.sgstubs) <= PLAT_NSC_SIZE,
+           "NSC gateway exceeds PLAT_NSC_SIZE")
+#endif
 }

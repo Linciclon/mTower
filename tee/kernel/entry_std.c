@@ -48,6 +48,7 @@
 #include <kernel/entry_std.h>
 
 #include <kernel/tee_ta_manager.h>
+#include <tee_benchmark.h>
 
 /* Pre-processor Definitions. */
 
@@ -90,7 +91,9 @@ TEEC_Result tee_ioctl_close_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data
  *
  * @returns       None
  */
-//__attribute__((cmse_nonsecure_entry))
+#ifndef RUN_INSIDE_VM
+__attribute__((cmse_nonsecure_entry))
+#endif
 int32_t ioctl(uint32_t cmd, struct tee_ioctl_buf_data *buf_data)
 {
 //  printf("Secure ioctl: cmd = %x\n", cmd);
@@ -355,6 +358,11 @@ static void copy_out_param(struct tee_ta_param *ta_param, uint32_t num_params,
 
 TEEC_Result tee_ioctl_open_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data)
 {
+  volatile struct tee_benchmark_record *benchmark = TEE_BENCHMARK_RECORD;
+
+  if (benchmark->magic == TEE_BENCHMARK_MAGIC)
+    benchmark->open_handler = tee_benchmark_timer_count();
+
   TEE_Result res;
   TEE_ErrorOrigin err;
   struct tee_ta_session *sess = NULL;
@@ -391,6 +399,13 @@ TEEC_Result tee_ioctl_open_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data)
 
 TEEC_Result tee_ioctl_invoke(/*ctx,*/ struct tee_ioctl_buf_data *buf_data)
 {
+  volatile struct tee_benchmark_record *benchmark = TEE_BENCHMARK_RECORD;
+
+  if (benchmark->magic == TEE_BENCHMARK_MAGIC && benchmark->invoke_count &&
+      benchmark->invoke_count <= TEE_BENCHMARK_MAX_INVOKES)
+    benchmark->invoke_handler[benchmark->invoke_count - 1U] =
+      tee_benchmark_timer_count();
+
   TEE_ErrorOrigin err;
   TEE_Result res;
 
@@ -421,6 +436,11 @@ out:
 
 TEEC_Result tee_ioctl_close_session(/*ctx,*/ struct tee_ioctl_buf_data *buf_data)
 {
+  volatile struct tee_benchmark_record *benchmark = TEE_BENCHMARK_RECORD;
+
+  if (benchmark->magic == TEE_BENCHMARK_MAGIC)
+    benchmark->close_handler = tee_benchmark_timer_count();
+
   TEE_Result res;
   struct tee_ta_session *sess;
   struct tee_ioctl_close_session_arg *arg;

@@ -1,9 +1,15 @@
 MEMORY {
-    ROM (rx) : ORIGIN = 0x10000, LENGTH = 0x35000
-    RAM (rwx) : ORIGIN = 0x20010000, LENGTH = 0x10000
+    ROM (rx) : ORIGIN = 0x10000000, LENGTH = 0x50000
+    RAM (rwx) : ORIGIN = 0x30010000, LENGTH = 0x10000
 }
 ENTRY(_start)
 SECTIONS {
+    . = 0x10000000;
+    .gnu.sgstubs : ALIGN(32) {
+        __start_NSC = .;
+        . = ALIGN(4);
+    }
+    __end_NSC = .;
     .start : {
         *(.start)
     }
@@ -26,7 +32,7 @@ SECTIONS {
     }
  . = ALIGN(32);
  _data_lma_start = .;
-    . = 0x20010000;
+    . = 0x30010000;
     _data_vma_start = .;
     .data : AT(_data_lma_start){
         *(.data .data.*)
@@ -45,4 +51,6 @@ SECTIONS {
     . = . + 0x8000;
     PROVIDE(_stack_top = .);
     PROVIDE(_heap_base = .);
+    ASSERT(SIZEOF(.gnu.sgstubs) <= 0x20,
+           "NSC gateway exceeds PLAT_NSC_SIZE")
 }

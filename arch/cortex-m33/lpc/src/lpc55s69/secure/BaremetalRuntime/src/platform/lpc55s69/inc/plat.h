@@ -7,12 +7,34 @@
 
 #define PLAT_NON_UNIFIED_MEM
 
-//#if GUEST0
+#ifdef RUN_INSIDE_VM
 #define PLAT_CODE_MEM_BASE  0x10000
 #define PLAT_CODE_MEM_SIZE  0x35000
 
 #define PLAT_MEM_BASE       0x20010000
 #define PLAT_MEM_SIZE       0x10000
+#else
+/* Secure aliases used when mTower owns the processor natively. */
+#define PLAT_CODE_MEM_BASE  0x10000000
+#define PLAT_CODE_MEM_SIZE  0x50000
+
+#define PLAT_MEM_BASE       0x30010000
+#define PLAT_MEM_SIZE       0x10000
+
+#define PLAT_NS_CODE_MEM_BASE     0x00050000
+#define PLAT_NS_CODE_MEM_SIZE     0x00025000
+#define PLAT_NS_VECTOR_TABLE_BASE 0x00053000UL //this is the vector table off non-secure which is located at .lst file .text+size of text 
+#define PLAT_NS_MEM_BASE          0x20000000
+#define PLAT_NS_MEM_SIZE          0x00050000
+#define PLAT_NS_PERIPH_BASE       0x40000000
+#define PLAT_NS_PERIPH_SIZE       0x10000000
+#define PLAT_NS_FRO_BASE       0x9FC00u /**< 192MHz Free Running OScillator (FRO) Control register, offset: 0x10 */
+#define PLAT_NS_FRO_SIZE       0x400 /**< 192MHz Free Running OScillator (FRO) Control register, offset: 0x10 */
+
+/* Dedicated minimum-size SAU region for the generated ioctl SG veneer. */
+#define PLAT_NSC_BASE       0x10000000
+#define PLAT_NSC_SIZE       0x20
+#endif
 
 #define PLAT_UART_ADDR      0x40088000UL
 #define UART_NVIC_IRQ_ID    16

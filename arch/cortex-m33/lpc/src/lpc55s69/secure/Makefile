@@ -61,6 +61,12 @@ endif
 ifneq ($(NO_FIRMWARE),)
 CPPFLAGS+=-DNO_FIRMWARE=y
 endif
+ifneq ($(RUN_INSIDE_VM),)
+CPPFLAGS+=-DRUN_INSIDE_VM
+else
+# Generate Armv8-M secure gateway veneers for native execution.
+GENERIC_FLAGS+=-mcmse
+endif
 AFLAGS += $(GENERIC_FLAGS) $(CPPFLAGS) $(ARCH_ASFLAGS) 
 CFLAGS += $(GENERIC_FLAGS) $(CPPFLAGS) $(ARCH_CFLAGS) 
 LDFLAGS += $(GENERIC_FLAGS) $(ARCH_LDFLAGS) -nostartfiles  # se são genericas significam que são para todas as compilações, desde .s ou .c
@@ -143,9 +149,12 @@ LIBPATHS = -L. -L"$(TOPDIR)/lib"
 
 LIBS =  -lm -lc -lnosys -lalloc_s -lcrypt_s
 
-$(gen_ld_file): $(LD_FILE)
+$(gen_ld_file): $(LD_FILE) FORCE
 	@echo "Preprocessing Linker Files"
 	$(Q) $(CC) $(CPPFLAGS) -E -x assembler-with-cpp $< | grep "^[^#;]" > $@
+
+.PHONY: FORCE
+FORCE:
 
 $(AOBJS_S): $(OBJDIR)/%$(OBJEXT): %.S
 	$(Q) mkdir -p $(OBJDIR)/$(dir $<)
@@ -175,6 +184,7 @@ mtower_s$(EXEEXT): $(OBJS_S) $(gen_ld_file)
 	$(Q) $(OBJCOPY) -S -O binary $(ELF_FILE) $(OBJDIR)/bl32.bin
 	$(Q) $(SIZE) -A $(ELF_FILE) > $(DUMP_FILE)
 	$(Q) $(OBJDUMP) -x -S $(ELF_FILE) >> $(DUMP_FILE)
+	$(Q) cp -f $(OBJDIR)/bl32.bin $(TOPDIR)/mtower_s.bin
 	@echo "Vou copiar agr para o Build DIR"
 #	$(Q) cp -f $(OBJDIR)/libnsc$(LIBEXT) $(TOPDIR)/lib/
 #	@echo "Fiz tudo o que tinah para fazer aqui"

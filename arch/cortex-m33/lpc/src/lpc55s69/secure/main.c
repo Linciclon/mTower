@@ -46,14 +46,17 @@
 #define MAGENTA "\e[0;35m"
 #define CYAN    "\e[0;36m"
 #define GRAY    "\e[0;37m"
+#define MTOWER_BENCHMARK_SILENT 1
 
 /** Instruction Code of "B ."  */
 #define JUMP_HERE       0xe7fee7ff
 
 /* Private Types. */
 /* Any types, enums, structures or unions used by the file are defined here. */
-/* typedef for NonSecure callback functions */
-// typedef __NONSECURE_CALL int32_t (*NonSecure_funcptr)(uint32_t);
+/* typedef for the native secure-to-non-secure boot transition */
+#ifndef RUN_INSIDE_VM
+typedef void __attribute__((cmse_nonsecure_call)) (*NonSecure_funcptr)(void);
+#endif
 // typedef int32_t (*Secure_funcptr)(uint32_t);
 
 /* Private Function Prototypes. */
@@ -132,6 +135,7 @@ extern TEE_Result tee_cryp_init(void);
 
 // }
 
+#ifdef RUN_INSIDE_VM
 #define BAO_IMAGE_START     0x10000000UL
 #define BAO_HC_OFF          0x41UL
 #define BAO_HC_ADDR         BAO_IMAGE_START+BAO_HC_OFF
@@ -143,13 +147,61 @@ extern TEE_Result tee_cryp_init(void);
 
 void (*crosshyp_hypercall)(unsigned int, unsigned int, unsigned int) =
     (void (*)(unsigned int, unsigned int, unsigned int))BAO_HC_ADDR;
+#else
+#define SAU_BASE                 0xE000EDD0UL
+#define SAU_CTRL_ENABLE          (1UL << 0UL)
+#define SAU_REGION_ENABLE        (1UL << 0UL)
+#define SAU_REGION_NSC           (1UL << 1UL)
+#define SCB_NS_VTOR              (*(volatile uint32_t *)0xE002ED08UL)
+
+struct sau_regs {
+  volatile uint32_t ctrl;
+  volatile const uint32_t type;
+  volatile uint32_t rnr;
+  volatile uint32_t rbar;
+  volatile uint32_t rlar;
+};
+
+static struct sau_regs *const sau = (struct sau_regs *)SAU_BASE;
+
+static void sau_set_region(uint32_t region, uint32_t base, uint32_t size,
+                           uint32_t attributes)
+{
+  sau->rnr = region;
+  sau->rbar = base & 0xffffffe0UL;
+  sau->rlar = ((base + size - 1UL) & 0xffffffe0UL) |
+              attributes | SAU_REGION_ENABLE;
+}
+
+static void configure_nonsecure_world(void)
+{
+  /* Hand all external interrupts to the native non-secure payload.  In VM
+   * mode the hypervisor performs this routing; after reset they otherwise
+   * still target Secure state and the first FreeRTOS UART IRQ faults. */
+  for (uint32_t i = 0; i < 16; ++i) {
+    nvic->icer[i] = 0xffffffffUL;
+    nvic->icpr[i] = 0xffffffffUL;
+    nvic->itns[i] = 0xffffffffUL;
+  }
+
+  sau_set_region(0, PLAT_NS_CODE_MEM_BASE, PLAT_NS_CODE_MEM_SIZE, 0);
+  sau_set_region(1, PLAT_NS_MEM_BASE, PLAT_NS_MEM_SIZE, 0);
+  sau_set_region(2, PLAT_NSC_BASE, PLAT_NSC_SIZE, SAU_REGION_NSC);
+  sau_set_region(3, PLAT_NS_PERIPH_BASE, PLAT_NS_PERIPH_SIZE, 0);
+  sau_set_region(4, PLAT_NS_FRO_BASE, PLAT_NS_FRO_SIZE, 0); //Free Running OScillator (FRO) Control register, for booting freertos
+  sau->ctrl = SAU_CTRL_ENABLE;
+  __asm volatile("dsb\n\tisb" ::: "memory");
+}
+#endif
 
 
 
 void uart_rx_handler()
 {
     uart_clear_rxirq();
+#if !MTOWER_BENCHMARK_SILENT
     printf("VM0: UART RX Handler\n");
+#endif
 }
 
 
@@ -163,7 +215,7 @@ void uart_rx_handler()
  */
 static void Boot_Init(uint32_t u32BootBase)
 {
-
+#ifdef RUN_INSIDE_VM
   irq_set_handler(UART_IRQ_ID, uart_rx_handler);
   uart_enable_rxirq();
   irq_enable(UART_IRQ_ID);
@@ -248,6 +300,40 @@ static void Boot_Init(uint32_t u32BootBase)
   // fp(0);
 
   while (1);
+#else
+  u32BootBase = PLAT_NS_VECTOR_TABLE_BASE;
+  uint32_t const *vector_table = (uint32_t const *)u32BootBase;
+  uint32_t ns_msp = vector_table[0];
+  uint32_t ns_reset = vector_table[1];
+
+  ns_reset &= ~1UL;
+  configure_nonsecure_world();
+  //SCB_NS_VTOR = u32BootBase;
+  // __asm volatile("msr msp_ns, %0\n\tdsb\n\tisb"
+  //                : : "r"(ns_msp) : "memory");
+  // ns_reset = cmse_nsfptr_create(ns_reset);
+
+  // if (!cmse_is_nsfptr(ns_reset)) {
+  //   printf("Invalid non-secure reset vector at 0x%08lx\n",
+  //          (unsigned long)vector_table[1]);
+  //   while (1);
+  // }
+
+  //SCB_NS_VTOR = PLAT_NS_VECTOR_TABLE_BASE;
+  asm volatile(
+      "msr msp_ns, %0\n"
+      "dsb\n"
+      "isb\n"
+      "bxns %1\n"
+      :
+      : "r"(ns_msp), "r"(ns_reset)
+      : "r2", "r3", "memory");
+
+  printf("Jump to execute non-secure FreeRTOS at 0x%08lx ...\n",
+         (unsigned long)u32BootBase);
+  //ns_reset();
+  while (1);
+#endif
 }
 
 // /**
@@ -679,17 +765,20 @@ void SCU_IRQHandler(void)
  */
 int main(void)
 {
+
 //JOAO  SYS_UnlockReg();
 
 //JOAO  SYS_Init();
 
   /* UART was already configured as debug port */
 
+#if !MTOWER_BENCHMARK_SILENT
   printf(NORMAL "\n\n\t-= mTower v" VERSION " =-  " __DATE__ "  " __TIME__"\n\n");
 
   printf("+---------------------------------------------+\n");
   printf("|     Secure handler (BL32) is running ...    |\n");
   printf("+---------------------------------------------+\n");
+#endif
 
   /* Init GPIO Port A for secure LED control */
   //GPIO_SetMode(PA, BIT11 | BIT10, GPIO_MODE_OUTPUT);
